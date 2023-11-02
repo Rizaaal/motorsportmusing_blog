@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/Post.astro
 title: "Types of Loans Without Credit Checks in the USA"
 author: ""
 description: "If you don't have a great credit score, it can be even more difficult. But there are actually loans available that don't require a credit check."

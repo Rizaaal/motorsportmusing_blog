@@ -1,24 +1,16 @@
 ---
 import Base from "../layouts/Base.astro";
 import Preview from "../components/Preview.astro";
+
+const posts = await Astro.glob("./posts/*.md");
 ---
 <Base>
-	<Preview 
-		title="Why guest blogging is so effective in 2023"
-		date="23 September 2023"
-		tags = "#blogging #seo"/>
-	<Preview 
-		title="Types of loan without credit check in the USA"
-		date="13 October 2023"
-		tags = "#blogging #loans"/>
-	<Preview 
-		title="Best places to do co-working in small cities"
-		date="23 October 2023"
-		tags = "#blogging #co-working"/>
-	<Preview 
-		title="How to not lose your temper at the stopping lights"
-		date="24 October 2023"
-		tags = "#blogging #driving"/>
+	{posts.map(post => 
+		<Preview 
+			title={post.frontmatter.title}
+			date="23 September 2023"
+			tags = "#blogging #seo"/>
+		)}
 </Base>
 
 

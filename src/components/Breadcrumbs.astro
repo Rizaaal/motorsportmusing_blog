@@ -1,0 +1,10 @@
+---
+const paths = Astro.url.pathname.split('/');
+let currentPage = paths.pop();
+currentPage = currentPage.replaceAll('%20', ' ');
+console.log(paths, currentPage);
+---
+
+<a href="/">home</a> &lt
+{paths.map(path => <a href=`/${path}`>{path}</a>)}
+
