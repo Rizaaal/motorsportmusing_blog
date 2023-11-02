@@ -1,16 +1,24 @@
 ---
-
+import Base from "../layouts/Base.astro";
+import Preview from "../components/Preview.astro";
 ---
+<Base>
+	<Preview 
+		title="Why guest blogging is so effective in 2023"
+		date="23 September 2023"
+		tags = "#blogging #seo"/>
+	<Preview 
+		title="Types of loan without credit check in the USA"
+		date="13 October 2023"
+		tags = "#blogging #loans"/>
+	<Preview 
+		title="Best places to do co-working in small cities"
+		date="23 October 2023"
+		tags = "#blogging #co-working"/>
+	<Preview 
+		title="How to not lose your temper at the stopping lights"
+		date="24 October 2023"
+		tags = "#blogging #driving"/>
+</Base>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+

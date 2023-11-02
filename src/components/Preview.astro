@@ -1,0 +1,20 @@
+---
+const { title, date, tags } = Astro.props
+---
+<style>
+
+</style>
+
+<article>
+    <h1>{ title }</h1>
+    <p>{date} <span>{tags}</span></p>
+    <img src="#" alt="poster">
+    <p id="subtitle">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit? Lorem ipsum!
+    </p>
+    <hr>
+    <p id="body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque officiis quod perferendis nesciunt culpa modi consequatur provident, molestias cumque ut ex recusandae veniam. Quisquam ipsa nemo aliquid unde obcaecati earum...
+    </p>
+    <a href=`/posts/${title}`>read article</a>
+</article>
