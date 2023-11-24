@@ -1,5 +1,5 @@
 ---
-const { title, date, tags } = Astro.props
+const { title, date, tags, image } = Astro.props
 ---
 <style>
 
@@ -8,7 +8,7 @@ const { title, date, tags } = Astro.props
 <article>
     <h1>{ title }</h1>
     <p>{date} <span>{tags}</span></p>
-    <img src="#" alt="poster">
+    <img src={image} alt="poster" width="100%">
     <p id="subtitle">
         Lorem ipsum dolor sit amet consectetur adipisicing elit? Lorem ipsum!
     </p>

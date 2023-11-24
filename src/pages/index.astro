@@ -8,9 +8,8 @@ const posts = await Astro.glob("./posts/*.md");
 	{posts.map(post => 
 		<Preview 
 			title={post.frontmatter.title}
-			date="23 September 2023"
-			tags = "#blogging #seo"/>
+			date={post.frontmatter.pubDate}
+			tags={post.frontmatter.tags}
+			image={post.frontmatter.image.url}/>
 		)}
 </Base>
-
-
