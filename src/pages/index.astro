@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Preview from "../components/Preview.astro";
+import formatDate from "../scripts/date.js";
 
 const posts = await Astro.glob("./posts/*.md");
 ---
@@ -8,7 +9,7 @@ const posts = await Astro.glob("./posts/*.md");
 	{posts.map(post => 
 		<Preview 
 			title={post.frontmatter.title}
-			date={post.frontmatter.pubDate}
+			date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
 			tags={post.frontmatter.tags}
 			image={post.frontmatter.image.url}/>
 		)}

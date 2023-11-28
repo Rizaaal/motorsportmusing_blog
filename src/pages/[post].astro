@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import formatDate from "../scripts/date.js";
 
 export async function getStaticPaths() {
   const posts = await Astro.glob('./posts/*.md');
@@ -17,33 +18,14 @@ const { title } = Astro.params;
 const { post } = Astro.props;
 
 const date = new Date(post.frontmatter.pubDate);
-const monthNames = [
-	'january',
-	'february',
-	'march',
-	'april',
-	'may',
-	'june',
-	'july',
-	'august',
-	'september',
-	'october',
-	'november',
-	'december'
-];
-
-// might use non-capitalized for D/M/Y format
-const monthCapitalized = 
-	monthNames[date.getMonth()][0].toUpperCase() +
-	monthNames[date.getMonth()].substring(1);
-
-const USADate = `${monthCapitalized} ${date.getDate()}, ${date.getFullYear()}`;	
 ---
 <Layout>
 	<Breadcrumbs />
 	<h1>{post.frontmatter.title}</h1>
 	<p>
-		{USADate}<span class="tags">{post.frontmatter.tags.map(tag => 
-		` #${tag}`)}</span>
+		{formatDate.USADate(date)}
+		<span class="tags">
+			{post.frontmatter.tags.map(tag => ` #${tag}`)}
+		</span>
 	</p>
 </Layout>
