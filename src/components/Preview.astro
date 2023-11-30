@@ -1,5 +1,6 @@
 ---
-const { title, date, tags, image } = Astro.props
+import IDomParser from "advanced-html-parser";
+const { title, date, tags, image, description, preview } = Astro.props;
 ---
 <style>
 
@@ -7,14 +8,13 @@ const { title, date, tags, image } = Astro.props
 
 <article>
     <h1>{ title }</h1>
-    <p>{date} <span>{tags}</span></p>
+    <p>{date} 
+    <span class="tags">
+        {tags.map(tag => ` #${tag}`)}
+    </span></p>
     <img src={image} alt="poster" width="100%">
-    <p id="subtitle">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit? Lorem ipsum!
-    </p>
+    <p id="description">{description}</p>
     <hr>
-    <p id="body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque officiis quod perferendis nesciunt culpa modi consequatur provident, molestias cumque ut ex recusandae veniam. Quisquam ipsa nemo aliquid unde obcaecati earum...
-    </p>
+    <main>{IDomParser.parse(preview)}</main>
     <a href=`/${title}`>read article</a>
 </article>

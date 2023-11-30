@@ -4,6 +4,9 @@ import Preview from "../components/Preview.astro";
 import formatDate from "../scripts/date.js";
 
 const posts = await Astro.glob("./posts/*.md");
+
+//console.log(posts[0].rawContent());
+//const parser = new DOMParser();
 ---
 <Base>
 	{posts.map(post => 
@@ -11,6 +14,8 @@ const posts = await Astro.glob("./posts/*.md");
 			title={post.frontmatter.title}
 			date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
 			tags={post.frontmatter.tags}
-			image={post.frontmatter.image.url}/>
+			image={post.frontmatter.image.url}
+			description={post.frontmatter.description}
+			preview={post.compiledContent()}/>
 		)}
 </Base>

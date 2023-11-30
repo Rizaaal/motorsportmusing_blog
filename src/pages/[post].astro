@@ -2,6 +2,7 @@
 import Layout from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import formatDate from "../scripts/date.js";
+import IDomParser from "advanced-html-parser";
 
 export async function getStaticPaths() {
   const posts = await Astro.glob('./posts/*.md');
@@ -17,6 +18,7 @@ export async function getStaticPaths() {
 const { title } = Astro.params;
 const { post } = Astro.props;
 
+
 const date = new Date(post.frontmatter.pubDate);
 ---
 <Layout>
@@ -28,4 +30,5 @@ const date = new Date(post.frontmatter.pubDate);
 			{post.frontmatter.tags.map(tag => ` #${tag}`)}
 		</span>
 	</p>
+	<article>{IDomParser.parse(post.compiledContent())}</article>
 </Layout>
