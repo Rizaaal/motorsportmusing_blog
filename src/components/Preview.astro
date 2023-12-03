@@ -1,20 +1,38 @@
 ---
 import IDomParser from "advanced-html-parser";
-const { title, date, tags, image, description, preview } = Astro.props;
+const { title, date, tags, image, preview } = Astro.props;
 ---
 <style>
+    /* fade-to-white effect*/
+
+    article{
+        position: relative;
+        z-index: -1;
+        height: 600px;
+        overflow-y: hidden;
+    }
+
+    div.transparent-wrapper {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0) 80%,
+            white,
+            white);
+    }
+
 
 </style>
 
-<article>
-    <h1>{ title }</h1>
-    <p>{date} 
-    <span class="tags">
-        {tags.map(tag => ` #${tag}`)}
-    </span></p>
-    <img src={image} alt="poster" width="100%">
-    <p id="description">{description}</p>
-    <hr>
-    <main>{IDomParser.parse(preview)}</main>
-    <a href=`/${title}`>read article</a>
-</article>
+<div class="transparent-wrapper">
+    <article>
+        <h1>{ title }</h1>
+        <p>{date} 
+        <span class="tags">
+            {tags.map(tag => ` #${tag}`)}
+        </span></p>
+        <img src={image} alt="poster" width="100%">
+        <p id="description">{preview.description}</p>
+        <hr>
+        <main>{IDomParser.parse(preview.content)}</main>
+    </article>
+</div>
+<a href=`/${title}`>read article</a>
