@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import Preview from "../components/Preview.astro";
 import formatDate from "../scripts/date.js";
 
-const posts = await Astro.glob("./posts/*.md");
+const posts = await Astro.glob("./archive/**/*.md");
 ---
 <Base>
 	{posts.map(post => 

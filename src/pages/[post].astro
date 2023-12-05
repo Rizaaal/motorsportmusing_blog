@@ -5,7 +5,7 @@ import formatDate from "../scripts/date.js";
 import IDomParser from "advanced-html-parser";
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob('./posts/*.md');
+  const posts = await Astro.glob('./archive/**/*.md');
 
   return posts.map(post => {
     return {
