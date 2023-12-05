@@ -1,4 +1,5 @@
 ---
+layout: "/src/layouts/Base.astro"
 title: "The Importance of Physical Activity in Preventing Cardiovascular Diseases"
 author: "pizzaGPT"
 description: "Cardiovascular diseases remain one of the leading causes of death worldwide. Fortunately, many of these diseases can be prevented by adopting a healthy lifestyle that includes a balanced diet and regular physical activity."
