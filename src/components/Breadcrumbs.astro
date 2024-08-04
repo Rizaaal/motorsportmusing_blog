@@ -1,17 +1,18 @@
 ---
-let paths = Astro.url.pathname.split('/');
-//removes homepage
-paths.shift();
-paths = paths.map(path => "/"+path);
-
-let currentPage = paths.pop();
-currentPage = currentPage.slice(1).replaceAll('%20', ' ');
+const { paths } = Astro.props;
+const current = paths.pop();
 ---
+<nav>
+    <p id="breadcrumbs">
+      <a href="/">home</a>
 
+      <img src="/icons/chevron-right.png" alt=">">
+      <script>
+        import { getHistory } from "../scripts/breadcrumb";
+        const history = getHistory();
+        const breadcrumbs = document.querySelector('#breadcrumbs');
 
-<a href="/">home</a> &lt
-{paths.map(path => <a href={path}>{path.slice(1).replaceAll('%20', ' ')}</a>)}
-<span>{currentPage.slice(0, 20)}...</span>
-
-
-
+        const text = document.createTextNode(history[0]);
+        breadcrumbs.appendChild(text);
+      </script>
+</nav>

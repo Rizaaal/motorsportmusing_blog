@@ -1,5 +1,5 @@
 ---
-layout: "/src/layouts/Base.astro"
+layout: "/src/layouts/Post.astro"
 title: "Mal di denti"
 author: "Gabriele Di Grazia"
 description: "Oggi mi fanno male i denti"

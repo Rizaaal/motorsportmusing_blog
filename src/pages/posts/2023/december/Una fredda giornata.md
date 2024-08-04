@@ -1,7 +1,7 @@
 ---
 #ovviamente se il path è archive/anno/mese anche
 #l'import dovrà essere diverso. Basterà usare un path assoluto?
-layout: "/src/layouts/Base.astro"
+layout: "/src/layouts/Post.astro"
 title: "Una fredda giornata"
 author: "Gabriele Di Grazia"
 description: "Oggi fa freddo, e le mie mani sono bloccate."

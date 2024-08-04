@@ -1,5 +1,5 @@
 ---
-layout: "/src/layouts/Base.astro"
+layout: "/src/layouts/Post.astro"
 title: "The Importance of Physical Activity in Preventing Cardiovascular Diseases"
 author: "pizzaGPT"
 description: "Cardiovascular diseases remain one of the leading causes of death worldwide. Fortunately, many of these diseases can be prevented by adopting a healthy lifestyle that includes a balanced diet and regular physical activity."
@@ -29,5 +29,3 @@ A few months later, Anna undergoes a follow-up check-up with her doctor. The res
 
 ## Conclusion
 Anna's story highlights the importance of physical activity in preventing cardiovascular diseases. Her decision to adopt a healthy lifestyle, including regular physical activity, has had a significant impact on her health and overall well-being. In summary, it is essential for all of us to remember that small changes in our daily routines can make a difference in preventing cardiovascular diseases and prolonging our lifespan.
-
-

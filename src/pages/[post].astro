@@ -5,9 +5,10 @@ import formatDate from "../scripts/date.js";
 import IDomParser from "advanced-html-parser";
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob('./archive/**/*.md');
+  const posts = await Astro.glob('./posts/**/*.md');
 
   return posts.map(post => {
+    // console.log(post.frontmatter.title);
     return {
       params: {post: post.frontmatter.title},
       props: {post}
@@ -15,20 +16,28 @@ export async function getStaticPaths() {
   })
 }
 
-const { title } = Astro.params;
+console.log(Astro.url);
+const { post: title } = Astro.params;
 const { post } = Astro.props;
 
 
 const date = new Date(post.frontmatter.pubDate);
 ---
+<style>
+  img {
+    width: 50%;
+  }
+</style>
+
 <Base>
-	<Breadcrumbs />
-	<h1>{post.frontmatter.title}</h1>
+	<Breadcrumbs paths={[{name: title, href: title}]}/>
+	<h1>{title}</h1>
 	<p>
 		{formatDate.USADate(date)}
 		<span class="tags">
 			{post.frontmatter.tags.map(tag => ` #${tag}`)}
 		</span>
 	</p>
+	<img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt}>
 	<article>{IDomParser.parse(post.compiledContent())}</article>
 </Base>

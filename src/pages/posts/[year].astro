@@ -1,5 +1,6 @@
 ---
 import ArchiveNav from "../../components/ArchiveNav.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Base from "../../layouts/Base.astro";
 import dateUtils from "../../scripts/date"
 
@@ -35,23 +36,24 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
     }
   ]
 }, []);
-
 ---
 
 <Base>
   <main>
 
+    <Breadcrumbs paths={[{name: 'tutti i posts', href: '/posts/2024'}]}/>
+
     <ArchiveNav currentYear={currentYear} posts={posts} />
 
-    <section id="mesiArchivio">
+    <section id="postMesi">
       <ul>
         {postsByMonth.map((post, i) =>
           <li>
-            <h2>{post.month}</h2>
+            <h2>{dateUtils.monthNames[post.month]}</h2>
             <ul>
               {post.titles.map(title =>
                 <li>
-                  <a href=`/${title}`>{title}</a>
+                  <a href=`/posts/${currentYear}/${dateUtils.monthNames[post.month]}/${title}`>{title}</a>
                 </li>
               )}
             </ul>

@@ -1,6 +1,7 @@
 ---
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
-const posts = await Astro.glob('./archive/**/*.md');
+const posts = await Astro.glob('./posts/**/*.md');
 const images = posts.map(post => post.frontmatter.image);
 
 ---
@@ -11,7 +12,7 @@ const images = posts.map(post => post.frontmatter.image);
 </style>
 
 <Base>
-  <h1>Post images</h1>
+  <Breadcrumbs paths={[{name: 'gallery', href: '/gallery'}]}/>
   <ul>
     {images.map(image =>
     <li>

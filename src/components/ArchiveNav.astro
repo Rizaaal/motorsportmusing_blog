@@ -9,7 +9,7 @@ const nextYear = years.find(year => year === currentYear + 1);
 ---
 <!-- @ts-ignore -->
 {prevYear &&
-<a href=`/archive/${prevYear}`>
+<a href=`/posts/${prevYear}`>
   <img src="/icons/chevron-left.png" alt="<"> {prevYear}
 </a>}
 
@@ -17,6 +17,6 @@ const nextYear = years.find(year => year === currentYear + 1);
 
  <!-- @ts-ignore -->
 {nextYear &&
-<a href=`/archive/${nextYear}`>
+<a href=`/posts/${nextYear}`>
   {nextYear} <img src="  /icons/chevron-right.png" alt=">">
 </a>}
