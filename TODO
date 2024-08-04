@@ -4,6 +4,10 @@ https://docs.astro.build/en/guides/backend/xata/#adding-a-database-with-xata
 "mi serve un CMS":
 https://docs.astro.build/en/guides/cms/
 
-"non mi serve un CMS, ma vorrei un modo per editare e pubblicare 
+"non mi serve un CMS, ma vorrei un modo per editare e pubblicare
 articoli senza dover accedere al codice sorgente":
 https://docs.astro.build/en/guides/content/#markdown-authoring
+
+Risoluzione problema visualizzazione breadcrumbs e tags nelle pagine visualizzate direttamente dall'archivio
+(ovvero dai link archive/[anno]/[mese]/[post]): creare un layout Post.astro e utilizzare quello nei frontmatter dei post
+al posto di Base.astro

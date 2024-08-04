@@ -1,0 +1,63 @@
+---
+import ArchiveNav from "../../components/ArchiveNav.astro";
+import Base from "../../layouts/Base.astro";
+import dateUtils from "../../scripts/date"
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob(`./**/*.md`);
+
+  return posts.map(post => {
+    return {
+      params: {year: new Date(post.frontmatter.pubDate).getFullYear()},
+      props: {posts}
+    }
+  });
+};
+
+const { posts } = Astro.props;
+const currentYear = parseInt(Astro.params.year);
+
+const currentYearPosts = posts.filter(post =>
+  new Date(post.frontmatter.pubDate).getFullYear() == currentYear
+);
+
+const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
+  if (prev[i - 1] && prev[i - 1].month === new Date(post.frontmatter.pubDate).getMonth()) {
+    prev[i - 1].titles.push(post.frontmatter.title);
+    return prev;
+  };
+
+  return [
+    ...prev,
+    {
+      month: new Date(post.frontmatter.pubDate).getMonth(),
+      titles: [post.frontmatter.title]
+    }
+  ]
+}, []);
+
+---
+
+<Base>
+  <main>
+
+    <ArchiveNav currentYear={currentYear} posts={posts} />
+
+    <section id="mesiArchivio">
+      <ul>
+        {postsByMonth.map((post, i) =>
+          <li>
+            <h2>{post.month}</h2>
+            <ul>
+              {post.titles.map(title =>
+                <li>
+                  <a href=`/${title}`>{title}</a>
+                </li>
+              )}
+            </ul>
+          </li>
+        )}
+      </ul>
+    </section>
+  </main>
+</Base>

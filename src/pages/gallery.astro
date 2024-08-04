@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+const posts = await Astro.glob('./archive/**/*.md');
+const images = posts.map(post => post.frontmatter.image);
+
+---
+<style>
+  img {
+    width: 50%;
+  }
+</style>
+
+<Base>
+  <h1>Post images</h1>
+  <ul>
+    {images.map(image =>
+    <li>
+      <img src={image.url} alt={image.alt}>
+    </li>
+  )}
+  </ul>
+</Base>

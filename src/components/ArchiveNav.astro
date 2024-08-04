@@ -1,0 +1,22 @@
+---
+const {currentYear, posts} = Astro.props;
+
+const years = [...new Set(posts.map(post =>
+  new Date(post.frontmatter.pubDate).getFullYear()
+))];
+const prevYear = years.find(year => year === currentYear - 1);
+const nextYear = years.find(year => year === currentYear + 1);
+---
+<!-- @ts-ignore -->
+{prevYear &&
+<a href=`/archive/${prevYear}`>
+  <img src="/icons/chevron-left.png" alt="<"> {prevYear}
+</a>}
+
+<div class="mostraAnno">{currentYear}</div>
+
+ <!-- @ts-ignore -->
+{nextYear &&
+<a href=`/archive/${nextYear}`>
+  {nextYear} <img src="  /icons/chevron-right.png" alt=">">
+</a>}

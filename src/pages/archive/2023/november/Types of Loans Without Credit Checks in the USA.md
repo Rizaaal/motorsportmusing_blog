@@ -5,15 +5,8 @@ description: "If you don't have a great credit score, it can be even more diffic
 image:
   url: "https://docs.astro.build/default-og-image.png"
   alt: "The word “astro” against an illustration of planets and stars."
-pubDate: 2023-09-23
+pubDate: 2023-11-23
 tags: ["blogging", "loans"]
-#
-#schema post:
-#nel corpo ci va solo il testo principale.
-#il titolo va scritto nel meta "title"
-#la descrizione va scritta su "description"
-#l'immagine va su "image"
-#e poi verrà tutto visualizzato tramite layout
 ---
 It's not always easy to get a loan in the USA. If you don't have a great credit score, it can be even more difficult. But there are actually loans available that don't require a credit check. Here are some of the best options for those in need of a loan without a credit check.
 
@@ -36,5 +29,3 @@ Peer-to-peer lending is a newer option for borrowing money that doesn't require 
 # Conclusion
 
 While getting a loan without a credit check can be challenging, there are options available. However, it's important to remember that these types of loans often come with high interest rates and fees, and they can be risky if you're unable to repay them on time. Before taking out any type of loan, make sure you understand the terms and conditions and have a plan for repayment.
-
-

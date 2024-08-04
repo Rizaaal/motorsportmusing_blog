@@ -6,8 +6,8 @@ title: "Una fredda giornata"
 author: "Gabriele Di Grazia"
 description: "Oggi fa freddo, e le mie mani sono bloccate."
 image:
-  url: "https://docs.astro.build/default-og-image.png"
-  alt: "The word “astro” against an illustration of planets and stars."
+  url: "https://live.staticflickr.com/4113/5436384957_e8492b42de_b.jpg"
+  alt: "'Sometimes I feel so cold, Like I'm waiting around all by myself.' by shesthereasonfortheworld"
 pubDate: 2023-12-05
 tags: ["diario", "personale"]
 ---

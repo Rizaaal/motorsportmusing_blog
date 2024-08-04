@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Base.astro";
+import Base from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import formatDate from "../scripts/date.js";
 import IDomParser from "advanced-html-parser";
@@ -9,8 +9,8 @@ export async function getStaticPaths() {
 
   return posts.map(post => {
     return {
-        params: {post: post.frontmatter.title},
-        props: {post} 
+      params: {post: post.frontmatter.title},
+      props: {post}
     }
   })
 }
@@ -21,7 +21,7 @@ const { post } = Astro.props;
 
 const date = new Date(post.frontmatter.pubDate);
 ---
-<Layout>
+<Base>
 	<Breadcrumbs />
 	<h1>{post.frontmatter.title}</h1>
 	<p>
@@ -31,4 +31,4 @@ const date = new Date(post.frontmatter.pubDate);
 		</span>
 	</p>
 	<article>{IDomParser.parse(post.compiledContent())}</article>
-</Layout>
+</Base>
