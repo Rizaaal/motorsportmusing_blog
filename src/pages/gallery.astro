@@ -1,6 +1,6 @@
 ---
-import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
+import MainSection from "../layouts/MainSection.astro";
 const posts = await Astro.glob('./posts/**/*.md');
 const images = posts.map(post => post.frontmatter.image);
 
@@ -12,7 +12,7 @@ const images = posts.map(post => post.frontmatter.image);
 </style>
 
 <Base>
-  <Breadcrumbs paths={[{name: 'gallery', href: '/gallery'}]}/>
+  <MainSection title="Images from all posts" />
   <ul>
     {images.map(image =>
     <li>

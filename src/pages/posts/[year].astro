@@ -1,7 +1,7 @@
 ---
 import ArchiveNav from "../../components/ArchiveNav.astro";
-import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Base from "../../layouts/Base.astro";
+import MainSection from "../../layouts/MainSection.astro";
 import dateUtils from "../../scripts/date"
 
 export async function getStaticPaths() {
@@ -39,13 +39,10 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
 ---
 
 <Base>
-  <main>
-
-    <Breadcrumbs paths={[{name: 'tutti i posts', href: '/posts/2024'}]}/>
-
+  <MainSection title="Archive">
     <ArchiveNav currentYear={currentYear} posts={posts} />
 
-    <section id="postMesi">
+    <section id="post-months">
       <ul>
         {postsByMonth.map((post, i) =>
           <li>
@@ -61,5 +58,5 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
         )}
       </ul>
     </section>
-  </main>
+  </MainSection>
 </Base>

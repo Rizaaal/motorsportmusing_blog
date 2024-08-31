@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import Breadcrumbs from "../components/Breadcrumbs.astro";
 import formatDate from "../scripts/date.js";
 import IDomParser from "advanced-html-parser";
 
@@ -30,7 +29,6 @@ const date = new Date(post.frontmatter.pubDate);
 </style>
 
 <Base>
-	<Breadcrumbs paths={[{name: title, href: title}]}/>
 	<h1>{title}</h1>
 	<p>
 		{formatDate.USADate(date)}

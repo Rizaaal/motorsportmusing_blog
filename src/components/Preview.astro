@@ -37,16 +37,3 @@ const month = dateUtils.monthNames[new Date(date).getMonth()];
   </article>
 </div>
 <a href=`/posts/${year}/${month}/${title}` class="preview-link" data-path={title}>read article</a>
-
-<script>
-  import { push } from "../scripts/breadcrumb";
-  const previewLinks = document.querySelectorAll('.preview-link');
-
-  console.log(previewLinks[0].attributes.getNamedItem("data-path"))
-
-  previewLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      push(link.attributes.getNamedItem('data-path').value);
-    });
-  });
-</script>

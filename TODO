@@ -8,5 +8,4 @@ https://docs.astro.build/en/guides/cms/
 articoli senza dover accedere al codice sorgente":
 https://docs.astro.build/en/guides/content/#markdown-authoring
 
-creare un oggetto Breadcrumbs con i seguenti metodi: push, pop, set. usare il localStorage per la permanenza della navigazione.
-oppure optare per una soluzione semplice e veloce: creare un Layout diverso per ogni percorso diverso: un Post.astro, PostArchive.astro, un PostGallery etc.
+Verificare se il "backend" funziona
