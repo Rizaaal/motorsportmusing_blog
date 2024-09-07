@@ -1,4 +1,7 @@
 ---
+import { searchButtonLabel } from "../utils/constants";
+import Search from "./Search.astro";
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -9,19 +12,27 @@ const currentYear = new Date().getFullYear();
   <ul>
     <li>
       <a href=`/posts/${currentYear}`>
-        <img title="All posts" src="/icons/archive.png" /></a
-      >
+        All posts
+        <!-- <img title="All posts" src="/icons/archive.png" /> -->
+      </a>
     </li>
     <li>
       <a href="/gallery">
-        <img title="some images" src="/icons/gallery.png" /></a
-      >
+        Images
+        <!-- <img title="some images" src="/icons/gallery.png" /> -->
+      </a>
     </li>
     <li>
-      <a href="/about"> <img title="about me" src="/icons/bio.png" /></a>
+      <a href="/about">
+        About
+        <!-- <img title="about me" src="/icons/bio.png" /> -->
+      </a>
     </li>
     <li>
-      <button> <img title="search" src="/icons/search.png" /></button>
+      <button id="search">
+        {searchButtonLabel}
+        <!-- <img title="search" src="/icons/search.png" /> -->
+      </button>
     </li>
   </ul>
 </nav>

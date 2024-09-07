@@ -1,0 +1,57 @@
+---
+import formatDate from "../utils/scripts/date.js";
+
+const posts = await Astro.glob("../pages/posts/**/*.md");
+---
+<script>
+  const root = document.querySelector('#search-root');
+  const searchButton: HTMLButtonElement = document.querySelector('button#search');
+  const searchSection: HTMLElement = document.querySelector('section#search');
+  const searchBar: HTMLInputElement = document.querySelector('section#search > input');
+  import { searchButtonLabel } from "../utils/constants";
+  const posts = JSON.parse(searchSection.dataset.posts);
+
+  function toggleSearchSection() {
+    const isHidden = searchSection.style.display === 'none';
+
+    searchSection.style.display = isHidden ? 'revert' : 'none';
+    searchButton.textContent = isHidden ? 'Close search' : searchButtonLabel;
+  }
+
+  function render(){
+    root.innerHTML = '';
+    const template = post => `
+      <li>${post.frontmatter.title}</li>
+    `;
+    // TODO: build search preview element
+
+    posts.forEach(post => {
+      post.frontmatter.title.includes(searchBar.value) && (root.innerHTML += template(post));
+    });
+  }
+
+
+  searchBar.addEventListener('keyup', render);
+  searchButton.addEventListener('click', toggleSearchSection);
+</script>
+
+<section id="search" style="display: none;" data-posts={JSON.stringify(posts)}>
+  <input type="text" placeholder="Search by article name or #category" />
+  <h2>Search results</h2>
+  <ul id="search-root">
+    <!-- {posts.map(post => {
+      if (searchValue.includes(post.frontmatter.name))
+      <li>
+        <h1>{post.frontmatter.title}</h1>
+        <p>
+          {formatDate.USADate(new Date(post.frontmatter.pubDate))}
+          <span class="tags">
+            {post.frontmatter.tags.map((tag) => ` #${tag}`)}
+          </span>
+        </p>
+        <p id="description">{post.frontmatter.description}</p>
+      </li>
+      <hr>
+    })} -->
+  </ul>
+</section>
