@@ -1,6 +1,4 @@
 ---
-import formatDate from "../utils/scripts/date.js";
-
 const posts = await Astro.glob("../pages/posts/**/*.md");
 ---
 <script>
@@ -9,10 +7,12 @@ const posts = await Astro.glob("../pages/posts/**/*.md");
   const searchSection: HTMLElement = document.querySelector('section#search');
   const searchBar: HTMLInputElement = document.querySelector('section#search > input');
   import { searchButtonLabel } from "../utils/constants";
+  import formatDate from '../utils/scripts/date.js';
   const posts = JSON.parse(searchSection.dataset.posts);
 
   function toggleSearchSection() {
     const isHidden = searchSection.style.display === 'none';
+    root.innerHTML = '';
 
     searchSection.style.display = isHidden ? 'revert' : 'none';
     searchButton.textContent = isHidden ? 'Close search' : searchButtonLabel;
@@ -20,14 +20,33 @@ const posts = await Astro.glob("../pages/posts/**/*.md");
 
   function render(){
     root.innerHTML = '';
-    const template = post => `
-      <li>${post.frontmatter.title}</li>
-    `;
-    // TODO: build search preview element
+    let result = '';
 
-    posts.forEach(post => {
-      post.frontmatter.title.includes(searchBar.value) && (root.innerHTML += template(post));
-    });
+    const template = post => `
+      <li>
+        <h2>${post.frontmatter.title}</h2>
+        <p>
+          ${formatDate.USADate(new Date(post.frontmatter.pubDate))}
+          <span class="tags">
+            ${post.frontmatter.tags.map((tag) => ` #${tag}`)}
+          </span>
+        </p>
+        <p>${post.frontmatter.description}</p>
+        <hr />
+      </li>
+    `;
+
+    if (searchBar.value) {
+     posts.forEach(post => {
+      const title = post.frontmatter.title.toLowerCase();
+      const tags = post.frontmatter.tags.join('');
+
+      if (title.includes(searchBar.value) || tags.includes(searchBar.value))
+        result += template(post);
+     });
+
+     root.innerHTML = result === '' ? 'No articles found' : result;
+    }
   }
 
 
@@ -36,22 +55,7 @@ const posts = await Astro.glob("../pages/posts/**/*.md");
 </script>
 
 <section id="search" style="display: none;" data-posts={JSON.stringify(posts)}>
-  <input type="text" placeholder="Search by article name or #category" />
+  <input type="text" placeholder="Search by article name or tag" />
   <h2>Search results</h2>
-  <ul id="search-root">
-    <!-- {posts.map(post => {
-      if (searchValue.includes(post.frontmatter.name))
-      <li>
-        <h1>{post.frontmatter.title}</h1>
-        <p>
-          {formatDate.USADate(new Date(post.frontmatter.pubDate))}
-          <span class="tags">
-            {post.frontmatter.tags.map((tag) => ` #${tag}`)}
-          </span>
-        </p>
-        <p id="description">{post.frontmatter.description}</p>
-      </li>
-      <hr>
-    })} -->
-  </ul>
+  <ul id="search-root"></ul>
 </section>
