@@ -1,6 +1,8 @@
 ---
+import Modal from "../components/shared/Modal.astro"
 import Base from "../layouts/Base.astro";
 import MainSection from "../layouts/MainSection.astro";
+import formatDate from "../utils/scripts/date.js";
 const posts = await Astro.glob('./posts/**/*.md');
 const images = posts.map(post => post.frontmatter.image);
 
@@ -13,6 +15,24 @@ const images = posts.map(post => post.frontmatter.image);
 
 <Base>
   <MainSection title="Images from all posts" />
+
+  <Modal id={'modal'}>
+    <img src={images[0].url} alt={images[0].alt}>
+    <h2>{posts[0].frontmatter.title}</h2>
+    <p>
+      {formatDate.USADate(new Date(posts[0].frontmatter.pubDate))}
+      <span class="tags">
+        {posts[0].frontmatter.tags.map((tag) => ` #${tag}`)}
+      </span>
+    </p>
+    <p id="description">{posts[0].frontmatter.description}</p>
+    <h3>License</h3>
+    <!-- if license is not provided, show something else -->
+    <p><small>{images[0].license}</small></p>
+    <button>Read article</button>
+    <button><a href={images[0].url} target="_blank">View Image</a></button>
+  </Modal>
+
   <ul>
     {images.map(image =>
     <li>
@@ -21,3 +41,9 @@ const images = posts.map(post => post.frontmatter.image);
   )}
   </ul>
 </Base>
+
+<script>
+//@ts-nocheck
+  const dialog = document.querySelector('#modal');
+  dialog.showModal();
+</script>

@@ -1,0 +1,8 @@
+---
+let { id } = Astro.props;
+if (!id) throw Error('ImageModal component requires an "id" prop to be exposed in order to function.');
+---
+
+<dialog id={id}>
+  <slot />
+</dialog>

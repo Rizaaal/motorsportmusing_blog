@@ -1,4 +1,5 @@
 ---
+//@ts-nocheck
 const {currentYear, posts} = Astro.props;
 
 const years = [...new Set(posts.map(post =>
@@ -7,7 +8,7 @@ const years = [...new Set(posts.map(post =>
 const prevYear = years.find(year => year === currentYear - 1);
 const nextYear = years.find(year => year === currentYear + 1);
 ---
-<!-- @ts-ignore -->
+
 {prevYear &&
 <a href=`/posts/${prevYear}`>
   <img src="/icons/chevron-left.png" alt="<"> {prevYear}
@@ -15,7 +16,6 @@ const nextYear = years.find(year => year === currentYear + 1);
 
 <div class="mostraAnno">{currentYear}</div>
 
- <!-- @ts-ignore -->
 {nextYear &&
 <a href=`/posts/${nextYear}`>
   {nextYear} <img src="  /icons/chevron-right.png" alt=">">

@@ -8,6 +8,7 @@ description: "Oggi fa freddo, e le mie mani sono bloccate."
 image:
   url: "https://live.staticflickr.com/4113/5436384957_e8492b42de_b.jpg"
   alt: "'Sometimes I feel so cold, Like I'm waiting around all by myself.' by shesthereasonfortheworld"
+  license: "\"girl\" by zhaohui008008 is licensed under CC BY-SA 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/2.0/?ref=openverse"
 pubDate: 2023-12-05
 tags: ["diario", "personale"]
 ---
