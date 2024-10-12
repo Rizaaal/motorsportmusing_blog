@@ -1,12 +1,11 @@
 ---
-import Modal from "../components/shared/Modal.astro"
 import Base from "../layouts/Base.astro";
 import MainSection from "../layouts/MainSection.astro";
-import formatDate from "../utils/scripts/date.js";
-const posts = await Astro.glob('./posts/**/*.md');
-const images = posts.map(post => post.frontmatter.image);
-
+const posts = await Astro.glob("./posts/**/*.md");
+const images = posts.map((post) => post.frontmatter.image);
+import "../style.css";
 ---
+
 <style>
   img {
     width: 50%;
@@ -16,34 +15,61 @@ const images = posts.map(post => post.frontmatter.image);
 <Base>
   <MainSection title="Images from all posts" />
 
-  <Modal id={'modal'}>
-    <img src={images[0].url} alt={images[0].alt}>
-    <h2>{posts[0].frontmatter.title}</h2>
+  <dialog class="modal">
+    <img src="" alt="alt" />
+    <h2>Title</h2>
     <p>
-      {formatDate.USADate(new Date(posts[0].frontmatter.pubDate))}
-      <span class="tags">
-        {posts[0].frontmatter.tags.map((tag) => ` #${tag}`)}
-      </span>
+      <span class="tags">#tag</span>
     </p>
-    <p id="description">{posts[0].frontmatter.description}</p>
+    <p id="description">description</p>
     <h3>License</h3>
     <!-- if license is not provided, show something else -->
-    <p><small>{images[0].license}</small></p>
-    <button>Read article</button>
-    <button><a href={images[0].url} target="_blank">View Image</a></button>
-  </Modal>
+    <p><small>license</small></p>
+    <button><a href="#">Read article</a></button>
+    <button><a href="#" target="_blank">View Image</a></button>
+    <button id="close">close</button>
+  </dialog>
 
   <ul>
-    {images.map(image =>
-    <li>
-      <img src={image.url} alt={image.alt}>
-    </li>
-  )}
+    {
+      images.map((image) => (
+        <li>
+          <img src={image.url} alt={image.alt} />
+        </li>
+      ))
+    }
   </ul>
 </Base>
 
 <script>
-//@ts-nocheck
-  const dialog = document.querySelector('#modal');
-  dialog.showModal();
+  //@ts-nocheck
+  import formatDate from "../utils/scripts/date.js";
+  const dialog = document.querySelector("dialog");
+  const images = document.querySelectorAll("li > img");
+  const closeButton = document.querySelector("dialog > button#close");
+  const posts = Object.values(import.meta.glob("./posts/**/*.md"));
+
+  closeButton.addEventListener("click", () => dialog.close());
+
+  Promise.all(posts.map((post) => post())).then((posts) => {
+    images.forEach((image, i) =>
+      image.addEventListener("click", () => {
+        dialog.children[0].src = posts[i].frontmatter.image.url;
+        dialog.children[1].innerText = posts[i].frontmatter.title;
+        dialog.children[2].innerHTML = `
+          ${formatDate.USADate(new Date(posts[i].frontmatter.pubDate))}
+          ${posts[i].frontmatter.tags.reduce((string, tag) => {
+            return `${string} #${tag} `;
+          }, "")}`;
+        dialog.children[3].innerText = posts[i].frontmatter.description;
+        dialog.children[5].innerHTML = `
+          <small>
+            ${posts[i].frontmatter.image.license || "none"}
+          </small>`;
+        dialog.children[6].children[0].href = posts[i].url;
+        dialog.children[7].children[0].href = posts[i].frontmatter.image.url;
+        dialog.showModal();
+      }),
+    );
+  });
 </script>
