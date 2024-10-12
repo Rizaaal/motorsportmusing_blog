@@ -12,6 +12,6 @@
   "dependencies": {
     "@astrojs/language-server": "^2.5.2",
     "advanced-html-parser": "^1.1.0",
-    "astro": "^3.4.2"
+    "astro": "^4.16.2"
   }
 }
