@@ -8,4 +8,5 @@ https://docs.astro.build/en/guides/cms/
 articoli senza dover accedere al codice sorgente":
 https://docs.astro.build/en/guides/content/#markdown-authoring
 
-Verificare se il "backend" funziona
+allineare la logica della search con quella della galleria,
+importando i post con import.meta.glob ed opzione { eager: true }

@@ -2,22 +2,23 @@
 import Base from "../layouts/Base.astro";
 import Preview from "../components/Preview.astro";
 import formatDate from "../utils/scripts/date.js";
+import MainSection from "../layouts/MainSection.astro";
 
 const posts = await Astro.glob("./posts/**/*.md");
 ---
+
 <Base>
-  {
-    posts.map((post) => (
-      <Preview
-        title={post.frontmatter.title}
-        date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
-        tags={post.frontmatter.tags}
-        image={post.frontmatter.image.url}
-        preview={{
-          description: post.frontmatter.description,
-          content: post.compiledContent(),
-        }}
-      />
-    ))
-  }
+  <MainSection title={"Home"}>
+    {
+      posts.map((post) => (
+        <Preview
+          title={post.frontmatter.title}
+          date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
+          tags={post.frontmatter.tags}
+          image={post.frontmatter.image.url}
+          description={post.frontmatter.description}
+        />
+      ))
+    }
+  </MainSection>
 </Base>
