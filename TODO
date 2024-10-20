@@ -7,6 +7,3 @@ https://docs.astro.build/en/guides/cms/
 "non mi serve un CMS, ma vorrei un modo per editare e pubblicare
 articoli senza dover accedere al codice sorgente":
 https://docs.astro.build/en/guides/content/#markdown-authoring
-
-allineare la logica della search con quella della galleria,
-importando i post con import.meta.glob ed opzione { eager: true }
