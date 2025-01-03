@@ -19,7 +19,7 @@ const month = dateUtils.monthNames[new Date(date).getMonth()];
 </article>
 
 <a
-  href=`/posts/${year}/${month}/${title}`
+  href={`${import.meta.env.BASE_URL}/posts/${year}/${month}/${title}`}
   class="preview-link"
   data-path={title}>read article</a
 >

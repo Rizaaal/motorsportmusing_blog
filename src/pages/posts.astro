@@ -1,0 +1,25 @@
+---
+import ArchiveNav from "../components/ArchiveNav.astro";
+import Base from "../layouts/Base.astro";
+import MainSection from "../layouts/MainSection.astro";
+
+//get the years where at least a post has been published
+const posts = await Astro.glob('./**/*.md');
+const postYearDates = posts.map(post =>
+  new Date(post.frontmatter.pubDate).getFullYear()
+);
+const yearsContainingPosts = [...new Set(postYearDates)];
+
+---
+<Base>
+  <MainSection title="Archive">
+
+    <section id="post-years">
+      <ul>
+        {yearsContainingPosts.map((year, i) =>
+          <li><a href={`${import.meta.env.BASE_URL}/posts/${year}`}>{year}</a></li>
+        )}
+      </ul>
+    </section>
+  </MainSection>
+</Base>

@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   const posts = await Astro.glob('./posts/**/*.md');
 
   return posts.map(post => {
-    // console.log(post.frontmatter.title);
+
     return {
       params: {post: post.frontmatter.title},
       props: {post}
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   })
 }
 
-console.log(Astro.url);
+
 const { post: title } = Astro.params;
 const { post } = Astro.props;
 

@@ -7,8 +7,7 @@ const url = post => {
   const year = new Date(post.frontmatter.pubDate).getFullYear();
   const month = dateUtils.monthNames[new Date(post.frontmatter.pubDate).getMonth()];
 
-  console.log(year, month);
-  return `/posts/${year}/${month}/${post.frontmatter.title}`;
+  return `${import.meta.env.BASE_URL}/posts/${year}/${month}/${post.frontmatter.title}`;
 }
 ---
 
@@ -43,7 +42,7 @@ const url = post => {
   const searchBar = document.querySelector("section#search > input");
   const posts = document.querySelectorAll("#result-list > li");
   import { searchButtonLabel } from "../utils/constants";
-  console.log("search scripts");
+
 
   function toggleSearchSection() {
     const isHidden = searchSection.style.display === "none";

@@ -1,5 +1,4 @@
 ---
-import ArchiveNav from "../../components/ArchiveNav.astro";
 import Base from "../../layouts/Base.astro";
 import MainSection from "../../layouts/MainSection.astro";
 import dateUtils from "../../utils/scripts/date"
@@ -40,8 +39,6 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
 
 <Base>
   <MainSection title="Archive">
-    <ArchiveNav currentYear={currentYear} posts={posts} />
-
     <section id="post-months">
       <ul>
         {postsByMonth.map((post, i) =>
@@ -50,7 +47,7 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
             <ul>
               {post.titles.map(title =>
                 <li>
-                  <a href=`/posts/${currentYear}/${dateUtils.monthNames[post.month]}/${title}`>{title}</a>
+                  <a href={`${import.meta.env.BASE_URL}/posts/${currentYear}/${dateUtils.monthNames[post.month]}/${title}`}>{title}</a>
                 </li>
               )}
             </ul>

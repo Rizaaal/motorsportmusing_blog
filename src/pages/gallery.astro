@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import MainSection from "../layouts/MainSection.astro";
 const posts = await Astro.glob("./posts/**/*.md");
 const images = posts.map((post) => post.frontmatter.image);
-import "../style.css";
+import "../style.css";;
 ---
 
 <style>

@@ -1,29 +1,26 @@
 ---
 import { searchButtonLabel } from "../utils/constants";
-import Search from "./Search.astro";
-
-const currentYear = new Date().getFullYear();
 ---
 
 <style></style>
 
 <nav>
-  <a href="/"><img src="/logo-small.png" alt="logo" /></a>
+  <a href={`${import.meta.env.BASE_URL}`}><img src="/logo-small.png" alt="logo" /></a>
   <ul>
     <li>
-      <a href=`/posts/${currentYear}`>
+      <a href={`${import.meta.env.BASE_URL}/posts`}>
         All posts
         <!-- <img title="All posts" src="/icons/archive.png" /> -->
       </a>
     </li>
     <li>
-      <a href="/gallery">
+      <a href={`${import.meta.env.BASE_URL}/gallery`}>
         Images
         <!-- <img title="some images" src="/icons/gallery.png" /> -->
       </a>
     </li>
     <li>
-      <a href="/about">
+      <a href={`${import.meta.env.BASE_URL}/about`}>
         About
         <!-- <img title="about me" src="/icons/bio.png" /> -->
       </a>
