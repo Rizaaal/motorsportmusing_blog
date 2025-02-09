@@ -1,6 +1,5 @@
 ---
 import dateUtils from "../utils/scripts/date";
-
 const { title, date, tags, image, description } = Astro.props;
 const year = new Date(date).getFullYear();
 const month = dateUtils.monthNames[new Date(date).getMonth()];
@@ -14,7 +13,7 @@ const month = dateUtils.monthNames[new Date(date).getMonth()];
       {tags.map((tag) => ` #${tag}`)}
     </span>
   </p>
-  <img src={image} alt="poster" width="100%" />
+  {image && <img src={image} alt="poster" width="100%" />}
   <p id="description">{description}</p>
 </article>
 

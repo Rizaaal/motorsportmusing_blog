@@ -1,14 +1,14 @@
 ---
-import ArchiveNav from "../components/ArchiveNav.astro";
-import Base from "../layouts/Base.astro";
-import MainSection from "../layouts/MainSection.astro";
+import ArchiveNav from "../../components/ArchiveNav.astro";
+import Base from "../../layouts/Base.astro";
+import MainSection from "../../layouts/MainSection.astro";
 
 //get the years where at least a post has been published
-const posts = await Astro.glob('./**/*.md');
+const posts = await Astro.glob('../../articles/*.md');
 const postYearDates = posts.map(post =>
   new Date(post.frontmatter.pubDate).getFullYear()
 );
-const yearsContainingPosts = [...new Set(postYearDates)];
+const yearsContainingPosts = [...new Set(postYearDates)].sort((a, b) => b - a);
 
 ---
 <Base>

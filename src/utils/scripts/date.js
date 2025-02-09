@@ -13,16 +13,16 @@ const monthNames = [
 	'december'
 ];
 
-// i do this because i might use non-capitalized for D/M/Y format
+// this is needed because non-capitalized D/M/Y format might be used
 function monthCapitalized(date){
-    return monthNames[date.getMonth()][0].toUpperCase() + 
-    monthNames[date.getMonth()].substring(1);
+  return monthNames[date.getMonth()][0].toUpperCase() +
+  monthNames[date.getMonth()].substring(1);
 }
 
 
 function USADate(date){
-    return `${monthCapitalized(date)} ${date.getDate()}, 
-    ${date.getFullYear()}`;
+  return `${monthCapitalized(date)} ${date.getDate()},
+  ${date.getFullYear()}`;
 }
 
 export default {monthNames, monthCapitalized, USADate}

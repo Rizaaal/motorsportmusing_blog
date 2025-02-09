@@ -1,9 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import MainSection from "../layouts/MainSection.astro";
-const posts = await Astro.glob("./posts/**/*.md");
-const images = posts.map((post) => post.frontmatter.image);
-import "../style.css";;
+const posts = await Astro.glob("../articles/*.md");
+const images = posts.filter(post => post.frontmatter.image).map((post) => post.frontmatter.image);
+import "../style.css";
 ---
 
 <style>
@@ -15,7 +15,7 @@ import "../style.css";;
 <Base>
   <MainSection title="Images from all posts">
     <dialog class="modal">
-      <img src="" alt="alt" />
+      <img src="" alt="image" />
       <h2>Title</h2>
       <p>
         <span class="tags">#tag</span>
@@ -44,12 +44,13 @@ import "../style.css";;
 <script>
   //@ts-nocheck
   import formatDate from "../utils/scripts/date.js";
+  import { getPostURL } from "../utils/scripts/utils"
   const dialog = document.querySelector("dialog");
   const images = document.querySelectorAll("li > img");
   const closeButton = document.querySelector("dialog > button#close");
   const posts = Object.values(
-    import.meta.glob("./posts/**/*.md", { eager: true }),
-  );
+    import.meta.glob("../articles/*.md", { eager: true }),
+  ).filter(post => post.frontmatter.image);
 
   closeButton.addEventListener("click", () => dialog.close());
 
@@ -66,7 +67,7 @@ import "../style.css";;
       <small>
         ${post.frontmatter.image.license || "none"}
       </small>`;
-    dialog.children[6].children[0].href = post.url;
+    dialog.children[6].children[0].href = getPostURL(post);
     dialog.children[7].children[0].href = post.frontmatter.image.url;
     dialog.showModal();
   }

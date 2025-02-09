@@ -4,7 +4,8 @@ import Preview from "../components/Preview.astro";
 import formatDate from "../utils/scripts/date.js";
 import MainSection from "../layouts/MainSection.astro";
 
-const posts = await Astro.glob("./posts/**/*.md");
+const posts = await Astro.glob("../articles/*.md");
+posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 ---
 
 <Base>
@@ -15,7 +16,7 @@ const posts = await Astro.glob("./posts/**/*.md");
           title={post.frontmatter.title}
           date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
           tags={post.frontmatter.tags}
-          image={post.frontmatter.image.url}
+          image={post.frontmatter.image ? post.frontmatter.image.url : null}
           description={post.frontmatter.description}
         />
       ))

@@ -1,15 +1,20 @@
 ---
-import Base from "../layouts/Base.astro";
-import formatDate from "../utils/scripts/date.js";
+import Base from "../../../../layouts/Base.astro";
+import formatDate from "../../../../utils/scripts/date.js";
+import dateUtils from "../../../../utils/scripts/date"
 import IDomParser from "advanced-html-parser";
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob('./posts/**/*.md');
+  const posts = await Astro.glob('../../../../articles/*.md');
 
   return posts.map(post => {
 
     return {
-      params: {post: post.frontmatter.title},
+      params: {
+        year: new Date(post.frontmatter.pubDate).getFullYear(),
+        month: dateUtils.monthNames[new Date(post.frontmatter.pubDate).getMonth()],
+        post: post.frontmatter.title
+      },
       props: {post}
     }
   })
@@ -36,6 +41,6 @@ const date = new Date(post.frontmatter.pubDate);
 			{post.frontmatter.tags.map(tag => ` #${tag}`)}
 		</span>
 	</p>
-	<img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt}>
+	{post.frontmatter.image && <img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt}>}
 	<article>{IDomParser.parse(post.compiledContent())}</article>
 </Base>

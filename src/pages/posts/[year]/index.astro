@@ -1,10 +1,10 @@
 ---
-import Base from "../../layouts/Base.astro";
-import MainSection from "../../layouts/MainSection.astro";
-import dateUtils from "../../utils/scripts/date"
+import Base from "../../../layouts/Base.astro";
+import MainSection from "../../../layouts/MainSection.astro";
+import dateUtils from "../../../utils/scripts/date"
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob(`./**/*.md`);
+  const posts = await Astro.glob(`../../../articles/*.md`);
 
   return posts.map(post => {
     return {
