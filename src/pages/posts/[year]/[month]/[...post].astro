@@ -1,6 +1,5 @@
 ---
 import Base from "../../../../layouts/Base.astro";
-import formatDate from "../../../../utils/scripts/date.js";
 import dateUtils from "../../../../utils/scripts/date"
 import IDomParser from "advanced-html-parser";
 
@@ -36,7 +35,7 @@ const date = new Date(post.frontmatter.pubDate);
 <Base>
 	<h1>{title}</h1>
 	<p>
-		{formatDate.USADate(date)}
+		{dateUtils.USADate(date)}
 		<span class="tags">
 			{post.frontmatter.tags.map(tag => ` #${tag}`)}
 		</span>
