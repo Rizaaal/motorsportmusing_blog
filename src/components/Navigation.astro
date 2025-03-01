@@ -1,8 +1,60 @@
 ---
 import { searchButtonLabel } from "../utils/constants";
+const images = await Astro.glob("../../public/icons/nav/white/*.png");
+const icons = images.map(image => `url(${image.default.src})`);
 ---
+<style define:vars={{
+  archiveIcon: icons[0],
+  galleryIcon: icons[2],
+  bioIcon: icons[1],
+  searchIcon: icons[3],
+}}>
+  nav, ul {
+    display: flex;
+    align-items: center;
+  }
 
-<style></style>
+  nav {
+    background-color: var(--secondary-color);
+    align-items: center;
+  }
+
+  ul {
+    justify-content: space-between;
+    width: 65%;
+  }
+
+  a, button {
+    display: block;
+    line-height: 0;
+    color: transparent;
+    background-color: transparent;
+    border: none;
+  }
+
+  /* main logo */
+  nav > a {
+    text-align: center;
+    background-color: var(--secondary-highlight-color);
+    position: revert;
+    width: 20%;
+    padding: 1em;
+  }
+
+  /* navigation items */
+  li > a, li > button {
+    width: 30px;
+    height: 30px;
+    background-image: var(--searchIcon);
+    background-size: cover;
+  }
+
+  /* navigation icons */
+  li:nth-of-type(1) > a { background-image: var(--archiveIcon); width: 29px; height: 24px; }
+  li:nth-of-type(2) > a { background-image: var(--galleryIcon); width: 26px; height: 26px; }
+  li:nth-of-type(3) > a { background-image: var(--bioIcon); width: 26px; height: 30px;}
+  li:nth-of-type(4) > button { background-image: var(--searchIcon); width: 25px; height: 26px;}
+</style>
 
 <nav>
   <a href={`${import.meta.env.BASE_URL}`}><img src={`${import.meta.env.BASE_URL}/logo-small.png`} alt="logo" /></a>
@@ -10,25 +62,21 @@ import { searchButtonLabel } from "../utils/constants";
     <li>
       <a href={`${import.meta.env.BASE_URL}/posts`}>
         All posts
-        <!-- <img title="All posts" src="/icons/archive.png" /> -->
       </a>
     </li>
     <li>
       <a href={`${import.meta.env.BASE_URL}/gallery`}>
         Images
-        <!-- <img title="some images" src="/icons/gallery.png" /> -->
       </a>
     </li>
     <li>
       <a href={`${import.meta.env.BASE_URL}/about`}>
         About
-        <!-- <img title="about me" src="/icons/bio.png" /> -->
       </a>
     </li>
     <li>
       <button id="search">
         {searchButtonLabel}
-        <!-- <img title="search" src="/icons/search.png" /> -->
       </button>
     </li>
   </ul>
