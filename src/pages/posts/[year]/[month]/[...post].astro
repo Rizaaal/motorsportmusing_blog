@@ -28,11 +28,47 @@ const date = new Date(post.frontmatter.pubDate);
 ---
 <style>
   img {
-    width: 50%;
+    width: 100%;
+  }
+
+  article {
+    background-color: var(--post-color);
+    padding: 1em 2em;
+    margin: 1em 0;
+    min-height: calc(100svh - 72px);
+  }
+
+  h1 {
+    font-size: 1.7em;
+    margin: 0 0 1em 0;
+  }
+
+  /* 1st p = date and tags string */
+  p:nth-of-type(1) {
+    color: var(--tertiary-color);
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  /* description */
+  p:nth-of-type(2) {
+    color: var(--secondary-color);
+    font-style: italic;
+    font-weight: 200;
+    margin-left: 4px;
+    margin-bottom: 4em;
+  }
+
+  hr {
+    border: solid 1px black;
+    width: 30%;
   }
 </style>
 
 <Base>
+<article>
 	<h1>{title}</h1>
 	<p>
 		{dateUtils.USADate(date)}
@@ -41,5 +77,8 @@ const date = new Date(post.frontmatter.pubDate);
 		</span>
 	</p>
 	{post.frontmatter.image && <img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt}>}
-	<article>{IDomParser.parse(post.compiledContent())}</article>
+	<p>{post.frontmatter.description}</p>
+	<hr>
+	<p>{IDomParser.parse(post.compiledContent())}</p>
+</article>
 </Base>

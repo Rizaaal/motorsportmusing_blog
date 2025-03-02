@@ -1,7 +1,18 @@
 ---
 const {title} = Astro.props;
 ---
-<style> main { background-color: var(--post-color); } </style>
+<style>
+  main {
+    background-color: var(--post-color);
+    padding: 1em 2em;
+    min-height: calc(100svh - 72px);
+    margin: 1em 0;
+  }
+
+  h1 {
+    margin: .2em 0 1.5em 0;
+  }
+</style>
 
 <main>
   <h1>{title}</h1>

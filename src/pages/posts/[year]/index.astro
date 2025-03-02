@@ -36,6 +36,17 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
   ]
 }, []);
 ---
+<style>
+  li {
+    list-style: disc;
+    margin-bottom: .2em;
+  }
+
+  a {
+    color: var(--tertiary-color);
+    font-weight: bold;
+  }
+</style>
 
 <Base>
   <MainSection title="Archive">

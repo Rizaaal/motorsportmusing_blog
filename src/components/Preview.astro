@@ -4,6 +4,37 @@ const { title, date, tags, image, description } = Astro.props;
 const year = new Date(date).getFullYear();
 const month = dateUtils.monthNames[new Date(date).getMonth()];
 ---
+<style>
+  article {
+    border: solid 1.5px black;
+    padding: 1.2em;
+    margin-bottom: 2em;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.1em;
+  }
+
+  /* 1st p = date and tags string */
+  a, p:nth-of-type(1) {
+    color: var(--tertiary-color);
+  }
+
+  a, span {
+    font-weight: bold;
+  }
+
+  a::after {
+    content: " >";
+  }
+
+  /* description */
+  p:nth-of-type(2) {
+    font-style: italic;
+    font-weight: 200;
+  }
+</style>
 
 <article>
   <h1>{title}</h1>
@@ -15,10 +46,10 @@ const month = dateUtils.monthNames[new Date(date).getMonth()];
   </p>
   {image && <img src={image} alt="poster" width="100%" />}
   <p id="description">{description}</p>
-</article>
 
-<a
-  href={`${import.meta.env.BASE_URL}/posts/${year}/${month}/${title}`}
-  class="preview-link"
-  data-path={title}>read article</a
->
+  <a
+    href={`${import.meta.env.BASE_URL}/posts/${year}/${month}/${title}`}
+    class="preview-link"
+    data-path={title}>Read article</a
+  >
+</article>
