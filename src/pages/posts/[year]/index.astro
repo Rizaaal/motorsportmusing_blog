@@ -48,6 +48,13 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
   }
 </style>
 
+<!-- highlight current page icon -->
+<style is:global>
+  nav li:nth-of-type(1) > a {
+    background-image: url("../../../public/icons/nav/highlight/archive-highlight.png") !important;
+  }
+</style>
+
 <Base>
   <MainSection title="Archive">
     <section id="post-months">
