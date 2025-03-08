@@ -1,14 +1,15 @@
 ---
 import { searchButtonLabel } from "../utils/constants";
-const images = await Astro.glob("../../public/icons/nav/white/*.png");
-const icons = images.map(image => `url(${image.default.src})`);
+const iconFiles = await Astro.glob("../../public/icons/nav/white/*.png");
+
+const icons = {
+  archiveIcon: `url(${iconFiles[0].default.src})`,
+  bioIcon: `url(${iconFiles[1].default.src})`,
+  galleryIcon: `url(${iconFiles[2].default.src})`,
+  searchIcon: `url(${iconFiles[3].default.src})`,
+};
 ---
-<style define:vars={{
-  archiveIcon: icons[0],
-  galleryIcon: icons[2],
-  bioIcon: icons[1],
-  searchIcon: icons[3],
-}}>
+<style define:vars={icons}>
   nav, ul {
     display: flex;
     align-items: center;
@@ -50,10 +51,29 @@ const icons = images.map(image => `url(${image.default.src})`);
   }
 
   /* navigation icons */
-  li:nth-of-type(1) > a { background-image: var(--archiveIcon); width: 29px; height: 24px; }
-  li:nth-of-type(2) > a { background-image: var(--galleryIcon); width: 26px; height: 26px; }
-  li:nth-of-type(3) > a { background-image: var(--bioIcon); width: 26px; height: 30px;}
-  li:nth-of-type(4) > button { background-image: var(--searchIcon); width: 25px; height: 26px;}
+  li:nth-of-type(1) > a {
+    background-image: var(--archiveIcon);
+    width: 29px;
+    height: 24px;
+  }
+
+  li:nth-of-type(2) > a {
+    background-image: var(--galleryIcon);
+    width: 26px;
+    height: 26px;
+  }
+
+  li:nth-of-type(3) > a {
+    background-image: var(--bioIcon);
+    width: 26px;
+    height: 30px;
+  }
+
+  li:nth-of-type(4) > button {
+    background-image: var(--searchIcon);
+    width: 25px;
+    height: 26px;
+  }
 </style>
 
 <nav>
