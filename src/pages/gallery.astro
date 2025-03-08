@@ -31,21 +31,17 @@ import "../style.css";
     background-color: rgba(100, 100, 100, 0.95);
   }
 
-  dialog h2 {
-    font-size: 1.9em;
+  dialog #title {
+    font-size: 1.2em;
   }
 
-  dialog h3 {
-    font-size: .9em;
+  dialog #tags {
+    font-size: .8em;
   }
 
   dialog h3, dialog h3 + p {
     margin: 0;
     color: #999;
-  }
-
-  .tags {
-    font-size: .4em;
   }
 
   dialog h3 + p {
@@ -85,25 +81,22 @@ import "../style.css";
     height: 29px;
     width: 29px;
   }
-
 </style>
 
 <Base>
   <MainSection title="Images from all posts">
     <dialog class="modal">
       <img src="" alt="image" />
-      <h2>Title</h2>
+      <h2 id="title">Title</h2>
       <p>
-        <!-- fix this, it should contain two tags -->
-        <!-- one that contains the date and one that contains tags -->
-        <span class="tags">#tag</span>
+        <span id="date"></span>
+        <span id="tags"></span>
       </p>
       <p id="description">description</p>
       <h3>License</h3>
-      <!-- if license is not provided, show something else -->
-      <p><small>license</small></p>
-      <button><a href="#">Read article</a></button>
-      <button><a href="#" target="_blank">View Image</a></button>
+      <p><small id="license">license</small></p>
+      <button><a href="#" id="read-article">Read article</a></button>
+      <button><a href="#" id="view-image" target="_blank">View Image</a></button>
       <button id="close">close</button>
     </dialog>
 
@@ -133,20 +126,19 @@ import "../style.css";
   closeButton.addEventListener("click", () => dialog.close());
 
   function showGalleryModal(post) {
-    dialog.children[0].src = post.frontmatter.image.url;
-    dialog.children[1].innerText = post.frontmatter.title;
-    dialog.children[2].innerHTML = `
-      ${formatDate.USADate(new Date(post.frontmatter.pubDate))}
-      ${post.frontmatter.tags.reduce((string, tag) => {
-        return `${string} #${tag} `;
-      }, "")}`;
-    dialog.children[3].innerText = post.frontmatter.description;
-    dialog.children[5].innerHTML = `
+    document.querySelector('dialog img').src = post.frontmatter.image.url;
+    document.querySelector('#title').innerText = post.frontmatter.title;
+    document.querySelector('#date').innerText = formatDate.USADate(new Date(post.frontmatter.pubDate));
+    document.querySelector('#tags').innerText = `${post.frontmatter.tags.reduce(
+      (string, tag) => `${string} #${tag} `
+    , "")}`;
+    document.querySelector('#description').innerText = post.frontmatter.description;
+    document.querySelector('#license').innerHTML = `
       <small>
         ${post.frontmatter.image.license || "Not provided"}
       </small>`;
-    dialog.children[6].children[0].href = getPostURL(post);
-    dialog.children[7].children[0].href = post.frontmatter.image.url;
+    document.querySelector('button #read-article').href = getPostURL(post);
+    document.querySelector('button #view-image').href = post.frontmatter.image.url;
     dialog.showModal();
   }
 
