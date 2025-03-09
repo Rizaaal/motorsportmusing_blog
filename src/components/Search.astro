@@ -10,15 +10,64 @@ const url = post => {
   return `${import.meta.env.BASE_URL}/posts/${year}/${month}/${post.frontmatter.title}`;
 }
 ---
+<style>
+  section#search {
+    position: fixed;
+    top: 0;
+    left: 999px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 100svh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 2em;
+    overflow-y: scroll;
+    transition: left .4s;
+  }
 
-<section id="search" style="display: none;">
+  button#close-search {
+    align-self: end;
+    background: transparent url("../../public/icons/close.png") no-repeat;
+    color: transparent;
+    overflow: hidden;
+    border: none;
+    min-height: 29px;
+    width: 29px;
+  }
+
+  input {
+    min-height: 40px;
+  }
+
+  a {
+    color: white;
+  }
+
+  ul, h2 {
+    padding: 0;
+    margin: 0;
+  }
+
+  hr {
+    width: 40%;
+    margin: 2em auto;
+  }
+</style>
+
+
+<section id="search">
+  <button id="close-search">Close</button>
   <input type="text" placeholder="Search by article name or tag" />
-  <h2>Search results</h2>
+  <h2></h2>
   <ul id="result-list">
     {
       posts.map((post) => (
         <li style="display: none;">
-          <h2><a href={url(post)}>{post.frontmatter.title}</a></h2>
+          <h2>
+            <a href={url(post)}>{post.frontmatter.title}</a>
+          </h2>
           <p>
             {formatDate.USADate(new Date(post.frontmatter.pubDate))}
             <span class="tags">
@@ -37,19 +86,12 @@ const url = post => {
   //@ts-nocheck
   const resultList = document.querySelector("#result-list");
   const searchButton = document.querySelector("button#search");
+  const closeButton = document.querySelector("button#close-search");
   const searchSection = document.querySelector("section#search");
   const sectionTitle = document.querySelector("section#search > h2");
   const searchBar = document.querySelector("section#search > input");
   const posts = document.querySelectorAll("#result-list > li");
   import { searchButtonLabel } from "../utils/constants";
-
-
-  function toggleSearchSection() {
-    const isHidden = searchSection.style.display === "none";
-
-    searchSection.style.display = isHidden ? "revert" : "none";
-    searchButton.textContent = isHidden ? "Close search" : searchButtonLabel;
-  }
 
   const noResultsMessage = document.createElement("p");
   noResultsMessage.innerText = "No results found";
@@ -80,5 +122,10 @@ const url = post => {
   }
 
   searchBar.addEventListener("keyup", filterPosts);
-  searchButton.addEventListener("click", toggleSearchSection);
+  searchButton.addEventListener("click", () => {
+    searchSection.style.left = "0px";
+  });
+  closeButton.addEventListener("click", () => {
+    searchSection.style.left = "999px"
+  });
 </script>
