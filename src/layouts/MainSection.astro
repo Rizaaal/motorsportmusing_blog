@@ -12,6 +12,13 @@ const {title} = Astro.props;
   h1 {
     margin: .2em 0 1.5em 0;
   }
+
+  @media screen and (min-width: 768px) {
+    main {
+      background-color: revert;
+      padding: 1em 3em;
+    }
+  }
 </style>
 
 <main>

@@ -7,19 +7,31 @@ import MainSection from "../layouts/MainSection.astro";
 const posts = await Astro.glob("../articles/*.md");
 posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 ---
+<style>
+  @media screen and (min-width: 768px) {
+    #article-preview-list {
+      display: grid;
+      padding: 0;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+    }
+  }
+</style>
 
 <Base>
   <MainSection title={"Home"}>
-    {
-      posts.map((post) => (
-        <Preview
-          title={post.frontmatter.title}
-          date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
-          tags={post.frontmatter.tags}
-          image={post.frontmatter.image ? post.frontmatter.image.url : null}
-          description={post.frontmatter.description}
-        />
-      ))
-    }
+    <section id="article-preview-list">
+      {
+        posts.map((post) => (
+          <Preview
+            title={post.frontmatter.title}
+            date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
+            tags={post.frontmatter.tags}
+            image={post.frontmatter.image ? post.frontmatter.image.url : null}
+            description={post.frontmatter.description}
+          />
+        ))
+      }
+    </section>
   </MainSection>
 </Base>
