@@ -1,0 +1,113 @@
+---
+const posts = await Astro.glob("../articles/*.md");
+import formatDate from "../utils/scripts/date.js";
+import dateUtils from "../utils/scripts/date";
+
+const url = post => {
+  const year = new Date(post.frontmatter.pubDate).getFullYear();
+  const month = dateUtils.monthNames[new Date(post.frontmatter.pubDate).getMonth()];
+
+  return `${import.meta.env.BASE_URL}/posts/${year}/${month}/${post.frontmatter.title}`;
+}
+---
+<style>
+  #desktop-search { display: none;}
+
+  @media screen and (min-width: 768px) {
+    #desktop-search {
+      display: revert;
+      grid-column: span 2;
+      align-items: center;
+    }
+
+    #desktop-search input {
+      width: 100%;
+      background-color: #d9d9d9;
+      border: none;
+      border-radius: 2px;
+      padding-left: 1em;
+      font-style: italic;
+    }
+
+    #desktop-search input:focus-visible {
+      outline-color: var(--post-color);
+    }
+
+    #desktop-result-list {
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      gap: 1em;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 2em;
+      overflow-y: scroll;
+      margin-top: 1em;
+    }
+
+    input {min-height: 40px;}
+
+    a {color: white;}
+
+    ul, h2 {padding: 0; margin: 0;}
+
+    hr {width: 40%; margin: 2em auto;}
+  }
+</style>
+
+<section id="desktop-search">
+  <input type="text" placeholder="Search by article name or tag" />
+  <ul id="desktop-result-list">
+    {posts.map(post => (
+      <li style="display: none;">
+        <h2><a href={url(post)}>{post.frontmatter.title}</a></h2>
+        <p>
+          {formatDate.USADate(new Date(post.frontmatter.pubDate))}
+          <span class="tags">{post.frontmatter.tags.map(tag => ` #${tag}`)}</span>
+        </p>
+        <p>{post.frontmatter.description}</p>
+        <hr />
+      </li>
+    ))}
+  </ul>
+</section>
+
+
+<script>
+  //@ts-nocheck
+  const searchSection = document.querySelector("#desktop-search");
+  const desktopResultList = document.querySelector("#desktop-result-list");
+  const desktopSearchBar = document.querySelector("#desktop-search input");
+  const posts = document.querySelectorAll("#desktop-result-list > li");
+  import { searchButtonLabel } from "../utils/constants";
+
+  const noResultsMessage = document.createElement("p");
+  noResultsMessage.innerText = "No results found";
+
+  function filterPostsDesktop() {
+    noResultsMessage.remove();
+
+    if (/\S/.test(desktopSearchBar.value)) {
+      desktopResultList.style.display = "revert";
+      let isEmpty = true;
+
+      posts.forEach((post) => {
+        const title = post.children[0].innerText.toLowerCase();
+        const tags = post.children[1].children[0].innerText.replaceAll("#", "");
+
+        if (title.includes(desktopSearchBar.value) || tags.includes(desktopSearchBar.value)) {
+          post.style.display = "revert";
+          isEmpty = false;
+        } else {
+          post.style.display = "none";
+        }
+      });
+
+      isEmpty && desktopResultList.appendChild(noResultsMessage);
+    } else {
+      desktopResultList.style.display = "none";
+    }
+  }
+
+  desktopSearchBar.addEventListener("keyup", filterPostsDesktop);
+</script>
