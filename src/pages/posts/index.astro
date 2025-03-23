@@ -28,6 +28,17 @@ const yearsContainingPosts = [...new Set(postYearDates)].sort((a, b) => b - a);
   nav li:nth-of-type(1) > a {
     background-image: url("../../../public/icons/nav/highlight/archive-highlight.png") !important;
   }
+
+  @media screen and (min-width: 768px) {
+    nav li:nth-of-type(1) > a {
+      background-image: none !important;
+      color: var(--post-color);
+    }
+
+    nav li:nth-of-type(1) > a::before {
+      content: url("../../../public/icons/nav/highlight/archive-highlight.png") !important;
+    }
+  }
 </style>
 
 <Base>

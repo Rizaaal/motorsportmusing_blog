@@ -88,6 +88,17 @@ import "../style.css";
   nav li:nth-of-type(2) > a {
     background-image: url("../../../public/icons/nav/highlight/gallery-highlight.png") !important;
   }
+
+  @media screen and (min-width: 768px) {
+    nav li:nth-of-type(2) > a {
+      background-image: none !important;
+      color: var(--post-color);
+    }
+
+    nav li:nth-of-type(2) > a::before {
+      content: url("../../../public/icons/nav/highlight/gallery-highlight.png") !important;
+    }
+  }
 </style>
 
 <Base>
