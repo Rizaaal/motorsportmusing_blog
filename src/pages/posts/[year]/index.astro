@@ -1,4 +1,5 @@
 ---
+//@ts-nocheck
 import Base from "../../../layouts/Base.astro";
 import MainSection from "../../../layouts/MainSection.astro";
 import dateUtils from "../../../utils/scripts/date"
@@ -21,20 +22,14 @@ const currentYearPosts = posts.filter(post =>
   new Date(post.frontmatter.pubDate).getFullYear() == currentYear
 );
 
-const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
-  if (prev[i - 1] && prev[i - 1].month === new Date(post.frontmatter.pubDate).getMonth()) {
-    prev[i - 1].titles.push(post.frontmatter.title);
-    return prev;
-  };
+let postsByMonth = currentYearPosts.reduce((groupedPosts, { frontmatter }) => {
+  let month = new Date(frontmatter.pubDate).getMonth();
+  month = dateUtils.monthNames[month];
+  (groupedPosts[month] ??= []).push(frontmatter.title);
+  return groupedPosts;
+}, {});
 
-  return [
-    ...prev,
-    {
-      month: new Date(post.frontmatter.pubDate).getMonth(),
-      titles: [post.frontmatter.title]
-    }
-  ]
-}, []);
+postsByMonth = Object.entries(postsByMonth);
 ---
 <style>
   li {
@@ -70,13 +65,15 @@ const postsByMonth = currentYearPosts.reduce((prev, post, i) => {
   <MainSection title="Archive">
     <section id="post-months">
       <ul>
-        {postsByMonth.map((post, i) =>
+        {postsByMonth.map(([month, titles], i) =>
           <li>
-            <h2>{dateUtils.monthNames[post.month]}</h2>
+            <h2>{month}</h2>
             <ul>
-              {post.titles.map(title =>
+              {titles.map(title =>
                 <li>
-                  <a href={`${import.meta.env.BASE_URL}/posts/${currentYear}/${dateUtils.monthNames[post.month]}/${title}`}>{title}</a>
+                  <a href={`${import.meta.env.BASE_URL}/posts/${currentYear}/${month}/${title}`}>
+                    {title}
+                  </a>
                 </li>
               )}
             </ul>

@@ -3,35 +3,50 @@ import Base from "../layouts/Base.astro";
 import Preview from "../components/Preview.astro";
 import formatDate from "../utils/scripts/date.js";
 import MainSection from "../layouts/MainSection.astro";
+import "../style.css"
 
-const posts = await Astro.glob("../articles/*.md");
-posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+const matches = import.meta.glob("../articles/*.md", { eager: true });
+
+//get last 6 posts
+const posts = Object.values(matches).slice(0, 6);
+
+posts.sort((a, b) => {
+  const previous = new Date(a.frontmatter.pubDate).getTime();
+  const next = new Date(b.frontmatter.pubDate).getTime();
+  return next - previous;
+});
 ---
+
 <style>
+  .index-main { background-color: var(--post-color); }
+
   @media screen and (min-width: 768px) {
     #article-preview-list {
       display: grid;
       padding: 0;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 12px;
+    }
+
+    .index-main {
+      background-color: white;
+      padding: 0;
     }
   }
 </style>
 
 <Base>
-  <MainSection title={"Home"}>
+  <MainSection title="Latest posts" className="index-main">
     <section id="article-preview-list">
-      {
-        posts.map((post) => (
-          <Preview
-            title={post.frontmatter.title}
-            date={formatDate.USADate(new Date(post.frontmatter.pubDate))}
-            tags={post.frontmatter.tags}
-            image={post.frontmatter.image ? post.frontmatter.image.url : null}
-            description={post.frontmatter.description}
-          />
-        ))
-      }
+      {posts.map(({ frontmatter }) =>
+        <Preview
+          title={frontmatter.title}
+          date={formatDate.USADate(new Date(frontmatter.pubDate))}
+          tags={frontmatter.tags}
+          image={frontmatter.image ? frontmatter.image.url : null}
+          description={frontmatter.description}
+        />
+      )}
     </section>
   </MainSection>
 </Base>

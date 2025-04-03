@@ -3,7 +3,6 @@ import Base from "../layouts/Base.astro";
 import MainSection from "../layouts/MainSection.astro";
 const posts = await Astro.glob("../articles/*.md");
 const images = posts.filter(post => post.frontmatter.image).map((post) => post.frontmatter.image);
-import "../style.css";
 ---
 
 <style>
@@ -94,7 +93,7 @@ import "../style.css";
 </style>
 
 <Base>
-  <MainSection title="Images from all posts">
+  <MainSection title="Images from all posts" className="main-default">
     <dialog class="modal">
       <img src="" alt="image" />
       <h2 id="title">Title</h2>

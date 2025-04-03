@@ -1,27 +1,27 @@
 ---
-const {title} = Astro.props;
+const {className, title, ...rest} = Astro.props;
 ---
 <style>
   main {
-    background-color: var(--post-color);
     padding: 1em 2em;
     min-height: calc(100svh - 72px);
     margin: 1em 0;
   }
 
-  h1 {
-    margin: .2em 0 1.5em 0;
-  }
+  h1 { margin: .2em 0 1.5em 0; }
+
+  /* dynamic <main> styling fallback */
+  .main-default { background-color: var(--post-color); }
 
   @media screen and (min-width: 768px) {
     main {
-      background-color: revert;
       padding: 1em 3em;
+      margin : 3em;
     }
   }
 </style>
 
-<main>
-  <h1>{title}</h1>
+<main class={className || 'main-default'} {...rest}>
+  {title && <h1>{title}</h1>}
   <slot />
 </main>
