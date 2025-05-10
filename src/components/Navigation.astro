@@ -1,6 +1,7 @@
 ---
 import { searchButtonLabel } from "../utils/constants";
 import DesktopSearch from "../components/DesktopSearch.astro";
+import Logo from "./Logo.astro";
 const iconFiles = await Astro.glob("../../public/icons/nav/white/*.png");
 
 const icons = {
@@ -18,12 +19,15 @@ const icons = {
 
   nav {
     background-color: var(--secondary-color);
-    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
   }
 
   ul {
     justify-content: space-between;
-    width: 65%;
+    width: 94%;
+    padding-left: 50%;
   }
 
   a, button {
@@ -36,11 +40,10 @@ const icons = {
 
   /* main logo */
   nav > a {
-    text-align: center;
+    position: absolute;
     background-color: var(--secondary-highlight-color);
-    position: revert;
-    width: 20%;
-    padding: 1em;
+    align-self: stretch;
+    width: 60px;
   }
 
   /* navigation items */
@@ -111,7 +114,6 @@ const icons = {
     }
 
     #logo {
-      display: flex;
       gap: 8px;
       align-self: flex-start;
       color: black;
@@ -150,10 +152,7 @@ const icons = {
 </style>
 
 <nav>
-  <a id="logo" href={`${import.meta.env.BASE_URL}`}>
-    <img src={`${import.meta.env.BASE_URL}/logo-small.png`} alt="logo" />
-    Hello World!
-  </a>
+  <a id="logo" href={`${import.meta.env.BASE_URL}`}><Logo /></a>
   <DesktopSearch />
   <ul>
     <li><a href={`${import.meta.env.BASE_URL}/posts`}>Archive</a></li>

@@ -14,7 +14,7 @@ const url = post => {
   section#search {
     position: fixed;
     top: 0;
-    left: 100vw;
+    left: 150vw;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -23,7 +23,7 @@ const url = post => {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
     padding: 2em;
-    overflow-y: scroll;
+    overflow-y: auto;
     transition: left .3s;
   }
 
@@ -128,10 +128,14 @@ const url = post => {
   }
 
   searchBar.addEventListener("keyup", filterPosts);
+
+  //open search
   searchButton.addEventListener("click", () => {
     searchSection.style.left = "0px";
   });
+
+  //close search
   closeButton.addEventListener("click", () => {
-    searchSection.style.left = "100vw"
+    searchSection.style.left = "150vw";
   });
 </script>

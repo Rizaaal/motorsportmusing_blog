@@ -11,13 +11,19 @@ const url = post => {
 }
 ---
 <style>
-  #desktop-search { display: none;}
+  #desktop-search { display: none; }
 
   @media screen and (min-width: 768px) {
     #desktop-search {
+      display: flex;
+      flex-direction: column;
+      width: 32rem;
+      height: 40px;
+      gap: 20px;
       display: revert;
       grid-column: span 2;
       align-items: center;
+      justify-self: end;
     }
 
     #desktop-search input {
@@ -34,15 +40,19 @@ const url = post => {
     }
 
     #desktop-result-list {
-      position: absolute;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-height: 400px;
       display: none;
       flex-direction: column;
       gap: 1em;
       background-color: rgba(0, 0, 0, 0.85);
       color: white;
       padding: 2em;
-      overflow-y: scroll;
+      overflow-y: auto;
       margin-top: 1em;
+      scrollbar-width: thin;
     }
 
     input {min-height: 40px;}
