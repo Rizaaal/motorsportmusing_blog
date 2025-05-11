@@ -8,11 +8,17 @@ const { frontmatter } = Astro.props
 	<MainSection title={frontmatter.title}>
   	<p>
   		{formatDate.USADate(new Date(frontmatter.pubDate))}
-  		<span class="tags">
+  		{frontmatter.tags && <span class="tags">
   			{frontmatter.tags.map(tag => ` #${tag}`)}
-  		</span>
+  		</span>}
   	</p>
-  	<img src={frontmatter.image.url} alt={frontmatter.image.alt} width="100%">
+  	{frontmatter.img
+      && <img
+        src={frontmatter.image.url}
+        alt={frontmatter.image.alt} width="100%"
+      >}
+    <p>{frontmatter.description}</p>
+    <hr>
   	<slot />
 	</MainSection>
 </Base>

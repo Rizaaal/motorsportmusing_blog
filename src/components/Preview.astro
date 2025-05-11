@@ -59,9 +59,9 @@ const month = dateUtils.monthNames[new Date(date).getMonth()];
   <h1>{title}</h1>
   <p>
     {date}
-    <span class="tags">
+    {tags && <span class="tags">
       {tags.map((tag) => ` #${tag}`)}
-    </span>
+    </span>}
   </p>
   {image && <img src={image} alt="poster" width="100%" />}
   <p id="description">{description}</p>

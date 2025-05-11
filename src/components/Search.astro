@@ -76,9 +76,9 @@ const url = post => {
           </h2>
           <p>
             {formatDate.USADate(new Date(post.frontmatter.pubDate))}
-            <span class="tags">
+            {post.frontmatter.tags && <span class="tags">
               {post.frontmatter.tags.map((tag) => ` #${tag}`)}
-            </span>
+            </span>}
           </p>
           <p>{post.frontmatter.description}</p>
           <hr />
@@ -111,7 +111,8 @@ const url = post => {
 
       posts.forEach((post) => {
         const title = post.children[0].innerText.toLowerCase();
-        const tags = post.children[1].children[0].innerText.replaceAll("#", "");
+        const tagElement = post.children[1].children[0];
+        const tags = tagElement ? tagElement.innerText.replaceAll("#", "") : "";
 
         if (title.includes(searchBar.value) || tags.includes(searchBar.value)) {
           post.style.display = "revert";
