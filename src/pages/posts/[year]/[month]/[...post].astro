@@ -1,7 +1,6 @@
 ---
 import Base from "../../../../layouts/Base.astro";
 import dateUtils from "../../../../utils/scripts/date"
-import IDomParser from "advanced-html-parser";
 
 export async function getStaticPaths() {
   const posts = await Astro.glob('../../../../articles/*.md');
@@ -19,66 +18,8 @@ export async function getStaticPaths() {
   })
 }
 
-
-const { post: title } = Astro.params;
 const { post } = Astro.props;
-
-
-const date = new Date(post.frontmatter.pubDate);
+const Content = post.Content;
 ---
-<style>
-  img {
-    width: 100%;
-  }
 
-  article {
-    background-color: var(--post-color);
-    padding: 1em 2em;
-    margin: 2em 3em;
-    min-height: calc(100svh - 72px);
-  }
-
-  h1 {
-    font-size: 3em;
-    margin: .2em 0 1em 0;
-  }
-
-  /* 1st p = date and tags string */
-  p:nth-of-type(1) {
-    color: var(--tertiary-color);
-  }
-
-  span {
-    font-weight: bold;
-  }
-
-  /* description */
-  p:nth-of-type(2) {
-    color: var(--secondary-color);
-    font-style: italic;
-    font-weight: 200;
-    margin-left: 4px;
-    margin-bottom: 4em;
-  }
-
-  hr {
-    border: solid 1px black;
-    width: 30%;
-  }
-</style>
-
-<Base>
-<article>
-	<h1>{title}</h1>
-	<p>
-		{dateUtils.USADate(date)}
-		<span class="tags">
-			{post.frontmatter.tags.map(tag => ` #${tag}`)}
-		</span>
-	</p>
-	{post.frontmatter.image && <img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt}>}
-	<p>{post.frontmatter.description}</p>
-	<hr>
-	<p>{IDomParser.parse(post.compiledContent())}</p>
-</article>
-</Base>
+<Content />

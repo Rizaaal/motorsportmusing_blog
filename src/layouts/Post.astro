@@ -4,6 +4,53 @@ import Base from "./Base.astro";
 import MainSection from "./MainSection.astro";
 const { frontmatter } = Astro.props
 ---
+<style>
+  img {
+    width: 100%;
+  }
+
+  article {
+    background-color: var(--post-color);
+    padding: 1em 2em;
+    margin: 6rem 0 3rem;
+    min-height: calc(100svh - 72px);
+  }
+
+  h1 {
+    font-size: 3em;
+    margin: .2em 0 1em 0;
+  }
+
+  /* 1st p = date and tags string */
+  p:nth-of-type(1) {
+    color: var(--tertiary-color);
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  /* description */
+  p:nth-of-type(2) {
+    color: var(--secondary-color);
+    font-style: italic;
+    font-weight: 200;
+    margin-left: 4px;
+    margin-bottom: 4em;
+  }
+
+  hr {
+    border: solid 1px black;
+    width: 30%;
+  }
+</style>
+
+<style is:global>
+  #content li {
+    list-style: unset;
+  }
+</style>
+
 <Base>
 	<MainSection title={frontmatter.title}>
   	<p>

@@ -18,7 +18,7 @@ export default defineConfig({
   build: {
     outputFolder: "admin",
     publicFolder: "public",
-    basePath: "astro_blog"
+    basePath: "astro_blog",
   },
   media: {
     tina: {
@@ -35,11 +35,21 @@ export default defineConfig({
         path: "src/articles",
         defaultItem: () => {
           return {
-            title: 'Nuovo articolo',
-            pubDate: new Date().toISOString()
-          }
+            title: "Nuovo articolo",
+            pubDate: new Date().toISOString(),
+            layout: "/src/layouts/Post.astro",
+          };
         },
         fields: [
+          {
+            type: "string",
+            name: "layout",
+            label: "Layout",
+            required: true,
+            ui: {
+              component: "hidden",
+            },
+          },
           {
             type: "string",
             name: "title",
@@ -54,9 +64,9 @@ export default defineConfig({
             required: false,
           },
           {
-            type: 'datetime',
-            name: 'pubDate',
-            label: 'Date',
+            type: "datetime",
+            name: "pubDate",
+            label: "Date",
             required: true,
           },
           {
@@ -65,32 +75,32 @@ export default defineConfig({
             label: "Author",
           },
           {
-            type: 'string',
-            name: 'tags',
-            label: 'Tags',
+            type: "string",
+            name: "tags",
+            label: "Tags",
             list: true,
           },
           {
-            type: 'object',
-            name: 'image',
-            label: 'Add Image',
+            type: "object",
+            name: "image",
+            label: "Add Image",
             fields: [
               {
-                label: 'URL',
-                name: 'url',
-                type: 'string'
+                label: "URL",
+                name: "url",
+                type: "string",
               },
               {
-                label: 'Alt',
-                name: 'alt',
-                type: 'string'
+                label: "Alt",
+                name: "alt",
+                type: "string",
               },
               {
-                label: 'License',
-                name: 'license',
-                type: 'string'
+                label: "License",
+                name: "license",
+                type: "string",
               },
-            ]
+            ],
           },
           {
             type: "rich-text",
