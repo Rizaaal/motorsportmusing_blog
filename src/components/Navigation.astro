@@ -119,13 +119,12 @@ const icons = {
 
     #logo {
       position: relative;
-      gap: 8px;
       align-self: flex-start;
       color: black;
       font-size: 3em;
       font-weight: 700;
-      padding: 10px;
-      width: revert;
+      padding: 15px 0px;
+      width: 0;
       text-align: start;
       background-color: revert;
     }
@@ -157,7 +156,7 @@ const icons = {
 </style>
 
 <nav>
-  <a id="logo" href={`${import.meta.env.BASE_URL}`}><Logo /></a>
+  <a id="logo" href={import.meta.env.BASE_URL}><Logo /></a>
   <SearchSection />
   <ul>
     <li><a href={`${import.meta.env.BASE_URL}posts`}>Archive</a></li>
