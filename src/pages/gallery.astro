@@ -75,7 +75,7 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
 <!-- highlight current page icon -->
 <style is:global>
   nav li:nth-of-type(2) > a {
-    background-image: url("/astro_blog/icons/nav/highlight/gallery-highlight.png") !important;
+    background-image: url("icons/nav/highlight/gallery-highlight.png") !important;
   }
 
   @media screen and (min-width: 768px) {
@@ -85,7 +85,7 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
     }
 
     nav li:nth-of-type(2) > a::before {
-      content: url("/astro_blog/icons/nav/highlight/gallery-highlight.png") !important;
+      content: url("icons/nav/highlight/gallery-highlight.png") !important;
     }
   }
 </style>
