@@ -8,6 +8,14 @@ pubDate: 2025-03-23T11:29:42.422Z
 author: Leo AI
 tags:
   - formula 1
+image:
+  url: >-
+    https://upload.wikimedia.org/wikipedia/commons/7/79/FIA_F1_Austria_2023_Nr._1_%281%29.jpg
+  alt: FIA F1 Austria 2023
+  license: >-
+    "FIA F1 Austria 2023 Nr. 1 (1)" by Lukas Raich is licensed under CC BY-SA
+    4.0. To view a copy of this license, visit
+    https://creativecommons.org/licenses/by-sa/4.0/?ref=openverse.
 ---
 
 Formula 1, or F1, is the highest class of international auto racing for single-seater formula racing cars sanctioned by the Fédération Internationale de l'Automobile (FIA). Here are some key aspects of F1:
