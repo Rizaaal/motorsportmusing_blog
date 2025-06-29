@@ -24,10 +24,11 @@ import MainSection from "../layouts/MainSection.astro";
   }
 </style>
 
-<!-- highlight current page icon -->
 <style is:global>
+  /* highlight current page icon */
+
   nav li:nth-of-type(3) > a {
-    background-image: url("../../../public/icons/nav/highlight/bio-highlight.png") !important;
+    background-image: url("icons/nav/highlight/bio-highlight.png") !important;
   }
 
   @media screen and (min-width: 768px) {
@@ -37,7 +38,7 @@ import MainSection from "../layouts/MainSection.astro";
     }
 
     nav li:nth-of-type(3) > a::before {
-      content: url("../../../public/icons/nav/highlight/bio-highlight.png") !important;
+      content: url("icons/nav/highlight/bio-highlight.png") !important;
     }
   }
 </style>
@@ -45,7 +46,7 @@ import MainSection from "../layouts/MainSection.astro";
 <Base>
   <MainSection title="A blog about F1 and motorsport.">
     <article>
-      <img src="monza-podium.jpg" alt="profile_pic" />
+      <img src="monza-podium.jpg" alt="Monza 2018 podium" />
       <small><i>Photo: Monza 2018 podium</i></small>
       <hr />
       <p>

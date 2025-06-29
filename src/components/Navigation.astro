@@ -2,16 +2,9 @@
 import { searchButtonLabel } from "../utils/constants";
 import SearchSection from "../components/SearchSection.astro";
 import Logo from "./Logo.astro";
-const iconFiles = await Astro.glob("../../public/icons/nav/white/*.png");
 
-const icons = {
-  archiveIcon: `url(${iconFiles[0].default.src})`,
-  bioIcon: `url(${iconFiles[1].default.src})`,
-  galleryIcon: `url(${iconFiles[2].default.src})`,
-  searchIcon: `url(${iconFiles[3].default.src})`,
-};
 ---
-<style define:vars={icons}>
+<style>
   nav, ul {
     display: flex;
     align-items: center;
@@ -51,31 +44,31 @@ const icons = {
   li > button {
     width: 30px;
     height: 30px;
-    background-image: var(--searchIcon);
+    background-image: url("icons/nav/white/search-white.png");
     background-size: cover;
   }
 
   /* navigation icons */
   li:nth-of-type(1) > a {
-    background-image: var(--archiveIcon);
+    background-image: url("icons/nav/white/archive-white.png");
     width: 29px;
     height: 24px;
   }
 
   li:nth-of-type(2) > a {
-    background-image: var(--galleryIcon);
+    background-image: url("icons/nav/white/gallery-white.png");
     width: 26px;
     height: 26px;
   }
 
   li:nth-of-type(3) > a {
-    background-image: var(--bioIcon);
-    width: 26px;
+    background-image: url("icons/nav/white/bio-white.png");
+    width: 30px;
     height: 30px;
   }
 
   li:nth-of-type(4) > button {
-    background-image: var(--searchIcon);
+    background-image: url("icons/nav/white/search-white.png");
     width: 25px;
     height: 26px;
   }
@@ -124,7 +117,7 @@ const icons = {
       font-size: 3em;
       font-weight: 700;
       padding: 15px 0px;
-      width: 0;
+      width: 120px;
       text-align: start;
       background-color: revert;
     }
@@ -140,15 +133,15 @@ const icons = {
     }
 
     li:nth-of-type(1) > a::before {
-      content: var(--archiveIcon);
+      content: url("icons/nav/white/archive-white.png");
     }
 
     li:nth-of-type(2) > a::before {
-      content: var(--galleryIcon);
+      content: url("icons/nav/white/gallery-white.png");
     }
 
     li:nth-of-type(3) > a::before {
-      content: var(--bioIcon);
+      content: url("icons/nav/white/bio-white.png");
     }
 
     button#search {display: none;}
