@@ -1,6 +1,6 @@
 ---
 import { searchButtonLabel } from "../utils/constants";
-import DesktopSearch from "../components/DesktopSearch.astro";
+import SearchSection from "../components/SearchSection.astro";
 import Logo from "./Logo.astro";
 const iconFiles = await Astro.glob("../../public/icons/nav/white/*.png");
 
@@ -88,6 +88,9 @@ const icons = {
     }
 
     nav {
+      position: revert;
+      box-shadow: revert;
+      width: auto;
       display: grid;
       grid-template-columns: auto auto auto;
       grid-template-rows: auto auto;
@@ -115,6 +118,7 @@ const icons = {
     }
 
     #logo {
+      position: relative;
       gap: 8px;
       align-self: flex-start;
       color: black;
@@ -154,11 +158,11 @@ const icons = {
 
 <nav>
   <a id="logo" href={`${import.meta.env.BASE_URL}`}><Logo /></a>
-  <DesktopSearch />
+  <SearchSection />
   <ul>
-    <li><a href={`${import.meta.env.BASE_URL}/posts`}>Archive</a></li>
-    <li><a href={`${import.meta.env.BASE_URL}/gallery`}>Images</a></li>
-    <li><a href={`${import.meta.env.BASE_URL}/about`}>About</a></li>
+    <li><a href={`${import.meta.env.BASE_URL}posts`}>Archive</a></li>
+    <li><a href={`${import.meta.env.BASE_URL}gallery`}>Images</a></li>
+    <li><a href={`${import.meta.env.BASE_URL}about`}>About</a></li>
     <li><button id="search">{searchButtonLabel}</button></li>
   </ul>
 </nav>
