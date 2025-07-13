@@ -15,7 +15,7 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
 
   img {width: 100%;}
 
-  img:hover {cursor: pointer;}
+  img#gallery:hover {cursor: pointer;}
 
   dialog {
     color: white;
@@ -76,11 +76,11 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
   }
 
   @media screen and (min-width: 768px) {
-    img {
+    img#gallery {
       transition: opacity .2s;
     }
 
-    img:hover {
+    img#gallery:hover {
       opacity: 0.8;
     }
   }
@@ -123,7 +123,7 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
       <p><small id="license">license</small></p>
       <div id="modal-buttons-container">
         <button><a href="#" id="read-article">Read article</a></button>
-        <button><a href="#" id="view-image" target="_blank">View Image</a></button>
+        <button><a href="#" id="view-image" target="_blank">View Source</a></button>
       </div>
       <button id="close">close</button>
     </dialog>
@@ -132,7 +132,7 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
       {
         images.map((image) => (
           <li>
-            <img src={image.url} alt={image.alt} />
+            <img id="gallery" src={image.url} alt={image.alt} />
           </li>
         ))
       }
