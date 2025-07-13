@@ -12,7 +12,7 @@ tags:
   - historic
   - goodwood
 image:
-  url: 'https://imgur.com/a/tQ60brj'
+  url: 'https://i.imgur.com/obsbx0c.png'
   alt: Goodwood vehicle at the starting position
 ---
 
