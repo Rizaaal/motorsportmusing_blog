@@ -58,7 +58,7 @@ const { frontmatter } = Astro.props
       		{formatDate.USADate(new Date(frontmatter.pubDate))}
       		{frontmatter.tags && <span class="tags">
      			{frontmatter.tags.map(tag => ` #${tag}`)}
-      		</span>}
+      		</span>}{frontmatter.author && `, by ${frontmatter.author}`}
      	</p>
      	{frontmatter.image
         && <img
