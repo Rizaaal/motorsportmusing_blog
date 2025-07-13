@@ -3,8 +3,8 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://rizaaal.github.io",
-  base: "/astro_blog/",
+  site: "https://motorsportmusing.com",
+  base: "/",
   build: {
     format: "file",
   },
