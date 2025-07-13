@@ -40,6 +40,12 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
 
   dialog h3 + p {font-style: italic;}
 
+  #modal-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
   dialog button {
     top: 60px;
     background-color: var(--secondary-color);
@@ -48,8 +54,6 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
     border: none;
     font-size: 1em;
   }
-
-  dialog button:nth-of-type(1) {margin-right: 23px;}
 
   dialog button > a {
     color: white;
@@ -102,8 +106,10 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
       <p id="description">description</p>
       <h3>License</h3>
       <p><small id="license">license</small></p>
-      <button><a href="#" id="read-article">Read article</a></button>
-      <button><a href="#" id="view-image" target="_blank">View Image</a></button>
+      <div id="modal-buttons-container">
+        <button><a href="#" id="read-article">Read article</a></button>
+        <button><a href="#" id="view-image" target="_blank">View Image</a></button>
+      </div>
       <button id="close">close</button>
     </dialog>
 
