@@ -74,6 +74,16 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
     height: 29px;
     width: 29px;
   }
+
+  @media screen and (min-width: 768px) {
+    img {
+      transition: opacity .2s;
+    }
+
+    img:hover {
+      opacity: 0.8;
+    }
+  }
 </style>
 
 <!-- highlight current page icon -->
@@ -95,7 +105,12 @@ const images = posts.filter(post => post.frontmatter.image).map((post) => post.f
 </style>
 
 <Base>
-  <MainSection title="Images from all posts" className="main-default">
+  <MainSection
+    title="Images from all posts"
+    subtitle="Select an image to view more details."
+    className="main-default"
+  >
+
     <dialog class="modal">
       <img src="" alt="image" />
       <h2 id="title">Title</h2>
