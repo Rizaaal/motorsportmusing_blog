@@ -29,7 +29,7 @@ So all the pre-season concerns were essentially confirmed, which I find interest
 
 **Could Ferrari have threatened Mercedes with a better strategy?**
 
-Federico Albano writes on Passion Motori:
+**Federico Albano** writes on Passione motori:
 
 > Once they took the lead, the two drivers of Toto Wolff's team gave the impression of being in total control of their advantage, freely matching the lap times of the Ferraris of Leclerc and Hamilton behind them. The slight gamble of the early pit stop saw both Russell and Antonelli deal with a certain amount of front graining — but, curiously, without this meaningfully affecting their lap times, a clear sign of a race being managed with a very comfortable margin.
 
