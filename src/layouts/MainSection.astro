@@ -1,5 +1,5 @@
 ---
-const {className, title, ...rest} = Astro.props;
+const {className, title, subtitle, ...rest} = Astro.props;
 ---
 <style>
   main {
@@ -9,6 +9,14 @@ const {className, title, ...rest} = Astro.props;
   }
 
   h1 { margin: .2em 0 1.5em 0; }
+
+  h2 {
+    color: var(--tertiary-color);
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin-top: -3em;
+    margin-bottom: 3rem;
+  }
 
   /* dynamic <main> styling fallback */
   .main-default { background-color: var(--post-color); }
@@ -23,5 +31,6 @@ const {className, title, ...rest} = Astro.props;
 
 <main class={className || 'main-default'} {...rest}>
   {title && <h1>{title}</h1>}
+  {subtitle && <h2>{subtitle}</h2>}
   <slot />
 </main>
