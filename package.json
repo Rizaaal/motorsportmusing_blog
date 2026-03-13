@@ -14,7 +14,7 @@
     "@astrojs/language-server": "^2.5.2",
     "astro": "^5.7.12",
     "astro-pagefind": "^1.8.3",
-    "tinacms": "^2.1.1"
+    "tinacms": "^2.10.1"
   },
   "devDependencies": {
     "@tinacms/cli": "^2.1.8",
