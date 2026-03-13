@@ -7,6 +7,9 @@ author: 'Gabriele Di Grazia, Claude ai'
 tags:
   - F1
   - comments
+image:
+  url: 'https://imgur.com/a/IQqqzbC'
+  alt: australia_2026
 ---
 
 Since winter, one of the most prominent rumors going around was the supposed massive power advantage of the Mercedes PU. This advantage supposedly came from a trick that made the compression ratio of the engine much greater than the regulations allowed, or at least intended to allow. As the most dedicated F1 fans know, after many checks by the FIA the engine turned out to be technically within the bounds of the written rule, even after a later test conducted at high temperatures.
