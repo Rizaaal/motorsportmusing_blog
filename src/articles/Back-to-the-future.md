@@ -25,6 +25,8 @@ And so, after such a long and breathless winter, the red lights go out in Austra
 
 So all the pre-season concerns were essentially confirmed, which I find interesting. Ferrari appeared to be the only team that could realistically challenge Mercedes, and the challenge came right from the opening laps — Ferrari were able to launch off the starting line far more efficiently. It's still not clear whether this is solely down to turbo size, since Sainz, driving a Mercedes-powered car, was the fastest from 0 to 200 km/h at the start.
 
+![](/bwl7acc0inog1.jpeg)
+
 **Could Ferrari have threatened Mercedes with a better strategy?**
 
 Federico Albano writes on Passion Motori:
