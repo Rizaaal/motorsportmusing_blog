@@ -8,7 +8,7 @@ tags:
   - F1
   - comments
 image:
-  url: 'https://imgur.com/a/IQqqzbC'
+  url: 'https://assets.tina.io/1152f7fa-e0a5-4772-9d99-f0e477b02c87/image.jpg'
   alt: australia_2026
 ---
 
